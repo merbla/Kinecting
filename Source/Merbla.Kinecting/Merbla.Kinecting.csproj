@@ -178,6 +178,12 @@
   <ItemGroup>
     <Folder Include="Views\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Merbla.Kinecting.Common\Merbla.Kinecting.Common.csproj">
+      <Project>{D41EEB4B-AA7C-41CD-B3AB-1910AF664E09}</Project>
+      <Name>Merbla.Kinecting.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
