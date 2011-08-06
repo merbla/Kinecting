@@ -107,15 +107,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AppBootstrapper.cs" />
+    <Compile Include="Bootstrapper.cs" />
     <Compile Include="Converters\VisibleIfPresentConverter.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ShellViewModel.cs" />
+    <Compile Include="Events\KinectingEvent.cs" />
+    <Compile Include="ViewModels\ShellViewModel.cs" />
     <Compile Include="ViewModels\KinectingViewModel.cs" />
-    <Page Include="ShellView.xaml">
+    <Page Include="Views\ShellView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -133,7 +134,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IShell.cs" />
+    <Compile Include="Views\IShell.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -178,9 +179,7 @@
     <Resource Include="Resources\save.png" />
     <Resource Include="Resources\wood.jpg" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Merbla.Kinecting.Common\Merbla.Kinecting.Common.csproj">
       <Project>{D41EEB4B-AA7C-41CD-B3AB-1910AF664E09}</Project>
