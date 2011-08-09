@@ -56,8 +56,8 @@
     <Reference Include="INuiInstanceHelper, Version=1.0.0.10, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=x86">
       <HintPath>..\packages\Kinect\INuiInstanceHelper.dll</HintPath>
     </Reference>
-    <Reference Include="Kinect.Toolkit">
-      <HintPath>..\packages\Kinect\Kinect.Toolkit.dll</HintPath>
+    <Reference Include="Kinect.Toolbox">
+      <HintPath>..\packages\KinectToolbox.1.1.0\lib\Kinect.Toolbox.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Expression.Controls, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Kinect\Microsoft.Expression.Controls.dll</HintPath>
