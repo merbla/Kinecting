@@ -51,7 +51,7 @@
       <HintPath>..\packages\Caliburn.Micro.Autofac.1.1\lib\net40\Caliburn.Micro.Autofac.dll</HintPath>
     </Reference>
     <Reference Include="Coding4Fun.Kinect.Wpf">
-      <HintPath>..\packages\Kinect\Coding4Fun.Kinect.Wpf.dll</HintPath>
+      <HintPath>..\packages\Coding4Fun.Kinect.Wpf.1.0.0\lib\Coding4Fun.Kinect.Wpf.dll</HintPath>
     </Reference>
     <Reference Include="INuiInstanceHelper, Version=1.0.0.10, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=x86">
       <HintPath>..\packages\Kinect\INuiInstanceHelper.dll</HintPath>
@@ -61,6 +61,9 @@
     </Reference>
     <Reference Include="Microsoft.Expression.Controls, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Kinect\Microsoft.Expression.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Expression.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Coding4Fun.Kinect.Wpf.1.0.0\lib\Microsoft.Expression.Drawing.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Research.Kinect, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Kinect\Microsoft.Research.Kinect.dll</HintPath>
