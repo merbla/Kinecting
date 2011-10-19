@@ -1,4 +1,6 @@
 using System;
+using System.Reactive;
+using System.Reactive.Linq;
 using System.Windows;
 using Microsoft.Research.Kinect.Nui;
 
@@ -8,7 +10,6 @@ namespace Merbla.Kinecting.Common.Extensions
     {
         public static void Initialise(this Runtime nui, Action onSuccess, Action<string> onError)
         {
-            nui = new Runtime();
 
             try
             {
@@ -32,6 +33,22 @@ namespace Merbla.Kinecting.Common.Extensions
             }
 
             onSuccess.Invoke();
+        }
+
+        public static void Test(this Runtime nui)
+        {
+            var skeletonFrameReadyObservable = Observable.FromEventPattern(nui, "SkeletonFrameReady");
+
+            var trackedSkeletons = from ev in skeletonFrameReadyObservable.Cast<EventPattern<SkeletonFrameReadyEventArgs>>()
+                                   from skel in ev.EventArgs.SkeletonFrame.Skeletons
+                                   where skel.TrackingState == SkeletonTrackingState.Tracked
+                                   select skel;
+
+            //var rightHandPositions = trackedSkeletons.ObserveOnDispatcher()
+            //    .Select(s => s.Joints[JointID.HandRight]);
+
+            //var lefttHandPositions = trackedSkeletons.ObserveOnDispatcher()
+            //    .Select(s => s.Joints[JointID.HandLeft]);
         }
     }
 }

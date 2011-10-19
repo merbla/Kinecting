@@ -3,17 +3,19 @@ using ReactiveUI;
 
 namespace Merbla.Kinecting.ViewModels
 {
-    public abstract class KinectingViewModel : ReactiveValidatedObject
+    public abstract class KinectingViewModel :Screen //ReactiveValidatedObject
     {
-        public IWindowManager WindowManager { get; set; }
+
+
+        protected KinectingViewModel(IEventAggregator eventAggregator)
+        {
+            EventAggregator = eventAggregator;
+            EventAggregator.Subscribe(this);
+        }
+
+
         public IEventAggregator EventAggregator { get; set; }
 
-
-        protected KinectingViewModel(IWindowManager windowManager, IEventAggregator eventAggregator)
-        {
-            WindowManager = windowManager;
-            EventAggregator = eventAggregator;
-
-        }
+ 
     }
 }
