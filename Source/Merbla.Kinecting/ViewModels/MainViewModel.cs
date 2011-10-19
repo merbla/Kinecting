@@ -9,13 +9,24 @@ namespace Merbla.Kinecting.ViewModels
     public class MainViewModel : KinectingViewModel, IHandle<KinectingEvent<SkeletonFrameReadyEventArgs>>
     {
         private readonly Runtime _kinectRuntime;
+        private BindableCollection<string> _skeletonItems;
         private string _statusText;
 
-        public MainViewModel(IEventAggregator eventAggregator, Runtime kinectRuntime) : base(eventAggregator)
+        public MainViewModel(IEventAggregator eventAggregator)
+            : base(eventAggregator)
         {
-            _kinectRuntime = kinectRuntime;
+            SkeletonItems = new BindableCollection<string>();
         }
 
+        public BindableCollection<String> SkeletonItems
+        {
+            get { return _skeletonItems; }
+            set
+            {
+                _skeletonItems = value;
+                NotifyOfPropertyChange(() => SkeletonItems);
+            }
+        }
 
         public string StatusText
         {
@@ -40,27 +51,30 @@ namespace Merbla.Kinecting.ViewModels
                                  {
                                      Text =
                                  "Location of Left Hand - X:" + s.Position.X +
-                                 " Y:" + s.Position.Y + Environment.NewLine
+                                 " Y:" + s.Position.Y 
+
                                  });
 
 
-        
             var righthand = trackedSkeletons.Select(x => x.Joints[JointID.HandRight])
                 .Select(s => new
                                  {
                                      Text =
                                  "Location of Right Hand - X:" + s.Position.X +
-                                 " Y:" + s.Position.Y + Environment.NewLine
+                                 " Y:" + s.Position.Y 
                                  });
+
 
             foreach (var l in lefthand)
             {
                 StatusText = StatusText + l.Text;
+                SkeletonItems.Add(l.Text);
             }
 
             foreach (var l in righthand)
             {
                 StatusText = StatusText + l.Text;
+                SkeletonItems.Add(l.Text);
             }
         }
 
