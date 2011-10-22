@@ -10,96 +10,55 @@ namespace Merbla.Kinecting.ViewModels
 {
     public class MemoryViewModel : KinectingViewModel
     {
-        private MemoryItem _tile1;
-        private MemoryItem _tile2;
-        private MemoryItem _tile3;
-        private MemoryItem _tile4;
-        private MemoryItem _tile5;
-        private MemoryItem _tile6;
-        private MemoryItem _tile7;
-        private MemoryItem _tile8;
+
 
         public MemoryViewModel(IEventAggregator eventAggregator) : base(eventAggregator)
         {
             var items = new LetterMemoryItems();
             MemoryGame = new MemoryGame(items);
-           
+
+            var x = Tile1.Value.Name;
         }
 
         public KeyValuePair<int, MemoryItem> Tile1
         {
-           get { return MemoryGame.Tiles.Take(1).First(); }
+            get { return MemoryGame.Tiles.ElementAt(0); }
         }
 
-        public MemoryItem Tile2
+        public KeyValuePair<int, MemoryItem> Tile2
         {
-            get { return _tile2; }
-            set
-            {
-                _tile2 = value;
-                NotifyOfPropertyChange(() => Tile2);
-            }
+            get { return MemoryGame.Tiles.ElementAt(1); }
         }
 
-        public MemoryItem Tile3
+        public KeyValuePair<int, MemoryItem> Tile3
         {
-            get { return _tile3; }
-            set
-            {
-                _tile3 = value;
-                NotifyOfPropertyChange(() => Tile3);
-            }
+            get { return MemoryGame.Tiles.ElementAt(2); }
         }
 
-        public MemoryItem Tile4
+        public KeyValuePair<int, MemoryItem> Tile4
         {
-            get { return _tile4; }
-            set
-            {
-                _tile4 = value;
-                NotifyOfPropertyChange(() => Tile4);
-            }
+            get { return MemoryGame.Tiles.ElementAt(3); }
         }
 
-        public MemoryItem Tile5
+        public KeyValuePair<int, MemoryItem> Tile5
         {
-            get { return _tile5; }
-            set
-            {
-                _tile5 = value;
-                NotifyOfPropertyChange(() => Tile5);
-            }
+            get { return MemoryGame.Tiles.ElementAt(4); }
         }
 
-        public MemoryItem Tile6
+        public KeyValuePair<int, MemoryItem> Tile6
         {
-            get { return _tile6; }
-            set
-            {
-                _tile6 = value;
-                NotifyOfPropertyChange(() => Tile6);
-            }
+            get { return MemoryGame.Tiles.ElementAt(5); }
         }
 
-        public MemoryItem Tile7
+        public KeyValuePair<int, MemoryItem> Tile7
         {
-            get { return _tile7; }
-            set
-            {
-                _tile7 = value;
-                NotifyOfPropertyChange(() => Tile7);
-            }
+            get { return MemoryGame.Tiles.ElementAt(6); }
+        }
+        public KeyValuePair<int, MemoryItem> Tile8
+        {
+            get { return MemoryGame.Tiles.ElementAt(7); }
         }
 
-        public MemoryItem Tile8
-        {
-            get { return _tile8; }
-            set
-            {
-                _tile8 = value;
-                NotifyOfPropertyChange(() => Tile8);
-            }
-        }
 
         public MemoryGame MemoryGame { get; set; }
 
