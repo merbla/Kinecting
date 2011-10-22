@@ -18,40 +18,35 @@
             <controls:ContentControl3D Style="{StaticResource ThreeDContent}">
                 <controls:ContentControl3D.BackContentTemplate>
                     <DataTemplate>
-                        <Button Content="{Binding Tile9, Path=Tile1.Value.Name}" Command="controls:ContentControl3D.RotateCommand"  Style="{StaticResource MemoryButtonStyle}" />
+                        <Button Content="{Binding ElementName=Tile1Button, Path=DataContext.Tile1.Value.Name}" Command="controls:ContentControl3D.RotateCommand"  Style="{StaticResource MemoryButtonStyle}" />
                     </DataTemplate>
                 </controls:ContentControl3D.BackContentTemplate>
-                <Button Content="{Binding Tile1, Path=Tile1.Value.Name}" Command="controls:ContentControl3D.RotateCommand"  Style="{StaticResource MemoryButtonStyle}"  />
+                <Button x:Name="Tile1Button" Content="?" Command="controls:ContentControl3D.RotateCommand"  Style="{StaticResource MemoryButtonStyle}"  />
             </controls:ContentControl3D>
 
             <controls:ContentControl3D Style="{StaticResource ThreeDContent}">
                 <controls:ContentControl3D.BackContentTemplate>
                     <DataTemplate>
-                        <Button Content="{Binding Tile2, Path=Tile2.Value.Name}" Command="controls:ContentControl3D.RotateCommand"  Style="{StaticResource MemoryButtonStyle}" />    </DataTemplate>
+                        <Button Content="{Binding ElementName=Tile2Button, Path=DataContext.Tile2.Value.Name}"  Command="controls:ContentControl3D.RotateCommand"  Style="{StaticResource MemoryButtonStyle}" />    </DataTemplate>
                 </controls:ContentControl3D.BackContentTemplate>
-                <Button Content="?" Command="controls:ContentControl3D.RotateCommand"  Style="{StaticResource MemoryButtonStyle}"  />
+                <Button Content="?"  x:Name="Tile2Button" Command="controls:ContentControl3D.RotateCommand"  Style="{StaticResource MemoryButtonStyle}"  />
             </controls:ContentControl3D>
 
             <controls:ContentControl3D Style="{StaticResource ThreeDContent}">
                 <controls:ContentControl3D.BackContentTemplate>
                     <DataTemplate>
-                        <Button Content="{Binding Tile3, Path=Tile3.Value.Name}" Command="controls:ContentControl3D.RotateCommand"  Style="{StaticResource MemoryButtonStyle}" />
-
-
+                        <Button Content="{Binding ElementName=Tile3Button, Path=DataContext.Tile3.Value.Name}" Command="controls:ContentControl3D.RotateCommand"  Style="{StaticResource MemoryButtonStyle}" />
                     </DataTemplate>
                 </controls:ContentControl3D.BackContentTemplate>
-                <Button Content="?" Command="controls:ContentControl3D.RotateCommand"  Style="{StaticResource MemoryButtonStyle}"  />
+                <Button Content="?" x:Name="Tile3Button" Command="controls:ContentControl3D.RotateCommand"  Style="{StaticResource MemoryButtonStyle}"  />
             </controls:ContentControl3D>
-
             <controls:ContentControl3D Style="{StaticResource ThreeDContent}">
                 <controls:ContentControl3D.BackContentTemplate>
                     <DataTemplate>
-                        <Button Content="{Binding Tile4, Path=Tile4.Value.Name}" Command="controls:ContentControl3D.RotateCommand"  Style="{StaticResource MemoryButtonStyle}" />
-
-
+                        <Button Content="{Binding ElementName=Tile4Button, Path=DataContext.Tile4.Value.Name}"  Command="controls:ContentControl3D.RotateCommand"  Style="{StaticResource MemoryButtonStyle}" />
                     </DataTemplate>
                 </controls:ContentControl3D.BackContentTemplate>
-                <Button Content="?" Command="controls:ContentControl3D.RotateCommand"  Style="{StaticResource MemoryButtonStyle}"  />
+                <Button Content="?" x:Name="Tile4Button" Command="controls:ContentControl3D.RotateCommand"  Style="{StaticResource MemoryButtonStyle}"  />
             </controls:ContentControl3D>
 
 
@@ -60,35 +55,35 @@
             <controls:ContentControl3D Style="{StaticResource ThreeDContent}">
                 <controls:ContentControl3D.BackContentTemplate>
                     <DataTemplate>
-                        <Button Content="{Binding Tile5, Path=Tile5.Value.Name}" Command="controls:ContentControl3D.RotateCommand"  Style="{StaticResource MemoryButtonStyle}" /></DataTemplate>
+                        <Button Content="{Binding ElementName=Tile5Button, Path=DataContext.Tile5.Value.Name}" Command="controls:ContentControl3D.RotateCommand"  Style="{StaticResource MemoryButtonStyle}" /></DataTemplate>
                 </controls:ContentControl3D.BackContentTemplate>
-                <Button Content="?" Command="controls:ContentControl3D.RotateCommand"  Style="{StaticResource MemoryButtonStyle}"  />
+                <Button Content="?" x:Name="Tile5Button" Command="controls:ContentControl3D.RotateCommand"  Style="{StaticResource MemoryButtonStyle}"  />
             </controls:ContentControl3D>
 
             <controls:ContentControl3D Style="{StaticResource ThreeDContent}">
                 <controls:ContentControl3D.BackContentTemplate>
                     <DataTemplate>
-                        <Button Content="{Binding Tile6, Path=Tile6.Value.Name}" Command="controls:ContentControl3D.RotateCommand"  Style="{StaticResource MemoryButtonStyle}" /></DataTemplate>
+                        <Button Content="{Binding ElementName=Tile6Button, Path=DataContext.Tile6.Value.Name}"  Command="controls:ContentControl3D.RotateCommand"  Style="{StaticResource MemoryButtonStyle}" /></DataTemplate>
                 </controls:ContentControl3D.BackContentTemplate>
-                <Button Content="?" Command="controls:ContentControl3D.RotateCommand"  Style="{StaticResource MemoryButtonStyle}"  />
+                <Button Content="?" x:Name="Tile6Button" Command="controls:ContentControl3D.RotateCommand"  Style="{StaticResource MemoryButtonStyle}"  />
             </controls:ContentControl3D>
 
             <controls:ContentControl3D Style="{StaticResource ThreeDContent}">
                 <controls:ContentControl3D.BackContentTemplate>
                     <DataTemplate>
-                        <Button Content="{Binding Tile7, Path=Tile7.Value.Name}" Command="controls:ContentControl3D.RotateCommand"  Style="{StaticResource MemoryButtonStyle}" />
+                        <Button Content="{Binding ElementName=Tile7Button, Path=DataContext.Tile7.Value.Name}" Command="controls:ContentControl3D.RotateCommand"  Style="{StaticResource MemoryButtonStyle}" />
                     </DataTemplate>
                 </controls:ContentControl3D.BackContentTemplate>
-                <Button Content="?" Command="controls:ContentControl3D.RotateCommand"  Style="{StaticResource MemoryButtonStyle}"  />
+                <Button Content="?" x:Name="Tile7Button" Command="controls:ContentControl3D.RotateCommand"  Style="{StaticResource MemoryButtonStyle}"  />
             </controls:ContentControl3D>
 
             <controls:ContentControl3D Style="{StaticResource ThreeDContent}">
                 <controls:ContentControl3D.BackContentTemplate>
                     <DataTemplate>
-                        <Button Content="{Binding Tile8, Path=Tile8.Value.Name}" Command="controls:ContentControl3D.RotateCommand"  Style="{StaticResource MemoryButtonStyle}" />
+                        <Button Content="{Binding ElementName=Tile8Button, Path=DataContext.Tile8.Value.Name}"  Command="controls:ContentControl3D.RotateCommand"  Style="{StaticResource MemoryButtonStyle}" />
                     </DataTemplate>
                 </controls:ContentControl3D.BackContentTemplate>
-                <Button Content="?" Command="controls:ContentControl3D.RotateCommand"  Style="{StaticResource MemoryButtonStyle}"  />
+                <Button Content="?" x:Name="Tile8Button" Command="controls:ContentControl3D.RotateCommand"  Style="{StaticResource MemoryButtonStyle}"  />
             </controls:ContentControl3D>
 
 
