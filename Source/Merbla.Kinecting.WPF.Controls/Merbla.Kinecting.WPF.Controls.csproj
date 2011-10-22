@@ -51,8 +51,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ContentControl3D.cs" />
-    <Compile Include="Controls\FrontSideControl.xaml.cs">
-      <DependentUpon>FrontSideControl.xaml</DependentUpon>
+    <Compile Include="Controls\MemoryButton.xaml.cs">
+      <DependentUpon>MemoryButton.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -79,9 +79,9 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Page Include="Controls\FrontSideControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    <Page Include="Controls\MemoryButton.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
