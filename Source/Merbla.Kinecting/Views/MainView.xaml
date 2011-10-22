@@ -1,14 +1,47 @@
 ﻿<UserControl x:Class="Merbla.Kinecting.Views.MainView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:controls="clr-namespace:Merbla.Kinecting.WPF.Controls;assembly=Merbla.Kinecting.WPF.Controls"
+             xmlns:local="clr-namespace:Merbla.Kinecting.WPF.Controls.Controls;assembly=Merbla.Kinecting.WPF.Controls"
+             Width="404" Height="424" >     
+    
     <DockPanel LastChildFill="True">
-
-        <ListBox ItemsSource="{Binding SkeletonItems}" DockPanel.Dock="Top" Height="200" Width="300">
-            
-        </ListBox>
-     
         
-
-    </DockPanel>
+        <StackPanel>
+            <controls:ContentControl3D  Height="100" Width="100">
+                <controls:ContentControl3D.Content>
+                    <Button Content="Test" Command="controls:ContentControl3D.RotateCommand" />
+                </controls:ContentControl3D.Content>
+                <controls:ContentControl3D.BackContentTemplate>
+                    <DataTemplate>
+                        <Button 
+                            Content="Go Back" Command="controls:ContentControl3D.RotateCommand" 
+                          />
+                    </DataTemplate>
+                </controls:ContentControl3D.BackContentTemplate>
+            </controls:ContentControl3D>
+        </StackPanel>
+        
+        <!--<StackPanel DockPanel.Dock="Top">
+            <local:FrontSideControl />
+            <controls:ContentControl3D x:Name="contentCtrl3D" BackContent="This is the back side"> 
+                <controls:ContentControl3D.Content>
+                    <local:FrontSideControl />
+                </controls:ContentControl3D.Content> 
+                <controls:ContentControl3D.BackContentTemplate>
+                    <DataTemplate>
+                        <Button 
+                            Content="{Binding}" Command="controls:ContentControl3D.RotateCommand" 
+                            Width="200" Height="150"/>
+                    </DataTemplate>
+                </controls:ContentControl3D.BackContentTemplate>
+            </controls:ContentControl3D>
+        </StackPanel>-->
+        <ListBox ItemsSource="{Binding SkeletonItems}" 
+                 DockPanel.Dock="Top" 
+                 Height="200" 
+                 Width="300">            
+        </ListBox>
+    </DockPanel> 
 
 </UserControl>

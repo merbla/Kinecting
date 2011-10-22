@@ -107,11 +107,16 @@
     </Compile>
     <Compile Include="Events\KinectingEvent.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\MemoryViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
     <Compile Include="ViewModels\KinectingViewModel.cs" />
     <Page Include="Views\MainView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MemoryView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\ShellView.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -183,6 +188,10 @@
     <ProjectReference Include="..\Merbla.Kinecting.Common\Merbla.Kinecting.Common.csproj">
       <Project>{D41EEB4B-AA7C-41CD-B3AB-1910AF664E09}</Project>
       <Name>Merbla.Kinecting.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Merbla.Kinecting.WPF.Controls\Merbla.Kinecting.WPF.Controls.csproj">
+      <Project>{03D01BD0-B86C-4745-8CB2-B295FB489C2C}</Project>
+      <Name>Merbla.Kinecting.WPF.Controls</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
