@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Caliburn.Micro;
-using Merbla.Kinecting.Events;
 using Merbla.Kinecting.Game.Logic.Memory;
-using Microsoft.Research.Kinect.Nui;
 
 namespace Merbla.Kinecting.ViewModels
 {
     public class MemoryViewModel : KinectingViewModel
     {
-
-
         public MemoryViewModel(IEventAggregator eventAggregator) : base(eventAggregator)
         {
             var items = new LetterMemoryItems();
@@ -54,16 +49,30 @@ namespace Merbla.Kinecting.ViewModels
         {
             get { return MemoryGame.Tiles.ElementAt(6); }
         }
+
         public KeyValuePair<int, MemoryItem> Tile8
         {
             get { return MemoryGame.Tiles.ElementAt(7); }
         }
 
+        private bool _open;
+
+        public bool Open
+        {
+            get { return _open; }
+            set
+            {
+                _open = value;
+                NotifyOfPropertyChange(() => Open);
+            }
+        }
+
+        public void Tile1Open()
+        {
+            Open = true;
+
+        }
 
         public MemoryGame MemoryGame { get; set; }
-
-        
-
-       
     }
 }
