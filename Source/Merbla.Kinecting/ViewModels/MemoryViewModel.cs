@@ -13,121 +13,167 @@ namespace Merbla.Kinecting.ViewModels
             var items = new LetterMemoryItems();
             MemoryGame = new MemoryGame(items);
         }
-
-
+        
         public MemoryGame MemoryGame
         {
             get { return _memoryGame; }
             set
             {
                 _memoryGame = value;
-                NotifyOfPropertyChange(() => MemoryGame);
+                NotifyChanges();
             }
         }
-
 
         public void CloseTile1()
         {
             MemoryGame.UnselectTile(Tile.One);
-            NotifyOfPropertyChange(() => MemoryGame);
+            NotifyChanges();
         }
 
         public void OpenTile1()
         {
             MemoryGame.SelectTile(Tile.One);
-            NotifyOfPropertyChange(() => MemoryGame);
+            NotifyChanges();
         }
-
 
         public void CloseTile3()
         {
             MemoryGame.UnselectTile(Tile.Three);
-            NotifyOfPropertyChange(() => MemoryGame);
+            NotifyChanges();
         }
 
         public void OpenTile3()
         {
             MemoryGame.SelectTile(Tile.Three);
-            NotifyOfPropertyChange(() => MemoryGame);
+            NotifyChanges();
         }
-
 
         public void CloseTile2()
         {
             MemoryGame.UnselectTile(Tile.Two);
-            NotifyOfPropertyChange(() => MemoryGame);
+            NotifyChanges();
         }
 
         public void OpenTile2()
         {
             MemoryGame.SelectTile(Tile.Two);
-            NotifyOfPropertyChange(() => MemoryGame);
+            NotifyChanges();
         }
-
 
         public void CloseTile4()
         {
             MemoryGame.UnselectTile(Tile.Four);
-            NotifyOfPropertyChange(() => MemoryGame);
+            NotifyChanges();
         }
 
         public void OpenTile4()
         {
             MemoryGame.SelectTile(Tile.Four);
-            NotifyOfPropertyChange(() => MemoryGame);
+            NotifyChanges();
         }
-
 
         public void CloseTile5()
         {
             MemoryGame.UnselectTile(Tile.Five);
-            NotifyOfPropertyChange(() => MemoryGame);
+            NotifyChanges();
         }
 
         public void OpenTile5()
         {
             MemoryGame.SelectTile(Tile.Five);
-            NotifyOfPropertyChange(() => MemoryGame);
+            NotifyChanges();
         }
-
 
         public void CloseTile8()
         {
             MemoryGame.UnselectTile(Tile.Eight);
-            NotifyOfPropertyChange(() => MemoryGame);
+            NotifyChanges();
         }
 
         public void OpenTile8()
         {
             MemoryGame.SelectTile(Tile.Eight);
-            NotifyOfPropertyChange(() => MemoryGame);
+            NotifyChanges();
         }
-
 
         public void CloseTile6()
         {
             MemoryGame.UnselectTile(Tile.Six);
-            NotifyOfPropertyChange(() => MemoryGame);
+            NotifyChanges();
         }
 
         public void OpenTile6()
         {
             MemoryGame.SelectTile(Tile.Six);
-            NotifyOfPropertyChange(() => MemoryGame);
+            NotifyChanges();
         }
-
 
         public void CloseTile7()
         {
             MemoryGame.UnselectTile(Tile.Seven);
-            NotifyOfPropertyChange(() => MemoryGame);
+            NotifyChanges();
         }
 
         public void OpenTile7()
         {
             MemoryGame.SelectTile(Tile.Seven);
-            NotifyOfPropertyChange(() => MemoryGame);
-            ;
+            NotifyChanges();
         }
+
+        private void NotifyChanges()
+        {
+            NotifyOfPropertyChange(() => MemoryGame);
+            NotifyOfPropertyChange(() => CanOpenTile1);
+            NotifyOfPropertyChange(() => CanOpenTile2);
+            NotifyOfPropertyChange(() => CanOpenTile3);
+            NotifyOfPropertyChange(() => CanOpenTile4);
+            NotifyOfPropertyChange(() => CanOpenTile5);
+            NotifyOfPropertyChange(() => CanOpenTile6);
+            NotifyOfPropertyChange(() => CanOpenTile7);
+            NotifyOfPropertyChange(() => CanOpenTile8);
+        }
+
+        public bool CanOpenTile1
+        {
+            get { return !MemoryGame.Tile1.Value.Matched; }
+        }
+
+        public bool CanOpenTile2
+        {
+            get { return !MemoryGame.Tile2.Value.Matched; }
+        }
+
+        public bool CanOpenTile3
+        {
+            get { return !MemoryGame.Tile3.Value.Matched; }
+        }
+
+        public bool CanOpenTile4
+        {
+            get { return !MemoryGame.Tile4.Value.Matched; }
+        }
+
+        public bool CanOpenTile5
+        {
+            get { return !MemoryGame.Tile5.Value.Matched; }
+        }
+
+        public bool CanOpenTile6
+        {
+            get { return !MemoryGame.Tile6.Value.Matched; }
+        }
+
+        public bool CanOpenTile7
+        {
+            get { return !MemoryGame.Tile7.Value.Matched; }
+        }
+
+        public bool CanOpenTile8
+        {
+            get { return !MemoryGame.Tile8.Value.Matched; }
+        }
+
+
+
     }
 }

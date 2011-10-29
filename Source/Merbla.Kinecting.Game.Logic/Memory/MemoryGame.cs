@@ -11,13 +11,16 @@ namespace Merbla.Kinecting.Game.Logic.Memory
 
     public class MemoryGame
     {
-
-
-        
-
         public void SelectTile(Tile tile)
         {
             SelectTile(tile, true);
+            DetermineIfMatch();
+        }
+
+        private void DetermineIfMatch()
+        {
+            
+
         }
 
         public void UnselectTile(Tile tile)
