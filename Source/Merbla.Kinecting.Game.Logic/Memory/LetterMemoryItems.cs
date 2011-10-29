@@ -6,10 +6,10 @@ namespace Merbla.Kinecting.Game.Logic.Memory
     {
         public LetterMemoryItems()
         {
-            Add(new MemoryItem {Name = "T"});
-            Add(new MemoryItem { Name = "Z" });
-            Add(new MemoryItem { Name = "A" });
-            Add(new MemoryItem { Name = "X" });
+            Add(new MemoryItem { HiddenText = "T", Text = "?" });
+            Add(new MemoryItem { HiddenText = "Z", Text = "?" });
+            Add(new MemoryItem { HiddenText = "A", Text = "?" });
+            Add(new MemoryItem { HiddenText = "X", Text = "?" });
         } 
 
     }
