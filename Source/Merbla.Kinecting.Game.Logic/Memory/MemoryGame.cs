@@ -7,18 +7,15 @@ namespace Merbla.Kinecting.Game.Logic.Memory
 
     public class MemoryGame
     {
-        public void SelectTile(Tile tile)
+        public bool SelectTile(Tile tile)
         {
             SelectTile(tile, true);
-            DetermineIfMatch(tile);
+            return DetermineIfMatch(tile);
         }
 
         private bool DetermineIfMatch(Tile tile)
         {
-
-            //Tiles.Where(x=>x.Value.Selected && x.Value.)
-            return false;
-
+            return Tiles.Count(x => x.Value.Tile == tile) == 2;
         }
 
         public void UnselectTile(Tile tile)
@@ -66,7 +63,6 @@ namespace Merbla.Kinecting.Game.Logic.Memory
         public MemoryGame(IList<MemoryItem> items)
         {
             Items = items;
-
             Initalise();
         }
 
@@ -110,23 +106,23 @@ namespace Merbla.Kinecting.Game.Logic.Memory
             get { return Tiles.First(x => x.Value.Tile == Tile.Eight); }
         }
 
-
         public IList<MemoryItem> Items { get; private set; }
+
         public Dictionary<int, MemoryItem> Tiles { get; private set; }
 
         private void Initalise()
         {
             Tiles = new Dictionary<int, MemoryItem>();
 
-            var r = new Random();
+            var rand = new Random();
 
             while (Tiles.Count != 8)
             {
-                var nextValue = r.Next(1, 9);
+                var nextValue = rand.Next(1, 9);
 
                 if (!Tiles.ContainsKey(nextValue))
                 {
-                    var element = r.Next(0, 4);
+                    var element = rand.Next(0, 4);
 
                     var memoryItem = Items.ElementAt(element);
 
