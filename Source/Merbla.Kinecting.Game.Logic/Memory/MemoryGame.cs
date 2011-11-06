@@ -15,7 +15,7 @@ namespace Merbla.Kinecting.Game.Logic.Memory
 
         private bool DetermineIfMatch(Tile tile)
         {
-         
+
             //Tiles.Where(x=>x.Value.Selected && x.Value.)
             return false;
 
@@ -66,73 +66,78 @@ namespace Merbla.Kinecting.Game.Logic.Memory
         public MemoryGame(IList<MemoryItem> items)
         {
             Items = items;
-            Tiles = new Dictionary<int, MemoryItem>();
+
             Initalise();
         }
 
         public KeyValuePair<int, MemoryItem> Tile1
         {
-            get { return Tiles.ElementAt(0); }
+            get { return Tiles.First(x => x.Value.Tile == Tile.One); }
         }
 
         public KeyValuePair<int, MemoryItem> Tile2
         {
-            get { return Tiles.ElementAt(1); }
+            get { return Tiles.First(x => x.Value.Tile == Tile.Two); }
         }
 
         public KeyValuePair<int, MemoryItem> Tile3
         {
-            get { return Tiles.ElementAt(2); }
+            get { return Tiles.First(x => x.Value.Tile == Tile.Three); }
         }
 
         public KeyValuePair<int, MemoryItem> Tile4
         {
-            get { return Tiles.ElementAt(3); }
+            get { return Tiles.First(x => x.Value.Tile == Tile.Four); }
         }
 
         public KeyValuePair<int, MemoryItem> Tile5
         {
-            get { return Tiles.ElementAt(4); }
+            get { return Tiles.First(x => x.Value.Tile == Tile.Five); }
         }
 
         public KeyValuePair<int, MemoryItem> Tile6
         {
-            get { return Tiles.ElementAt(5); }
+            get { return Tiles.First(x => x.Value.Tile == Tile.Six); }
         }
 
         public KeyValuePair<int, MemoryItem> Tile7
         {
-            get { return Tiles.ElementAt(6); }
+            get { return Tiles.First(x => x.Value.Tile == Tile.Seven); }
         }
 
         public KeyValuePair<int, MemoryItem> Tile8
         {
-            get { return Tiles.ElementAt(7); }
+            get { return Tiles.First(x => x.Value.Tile == Tile.Eight); }
         }
-        
+
 
         public IList<MemoryItem> Items { get; private set; }
         public Dictionary<int, MemoryItem> Tiles { get; private set; }
 
         private void Initalise()
         {
+            Tiles = new Dictionary<int, MemoryItem>();
+
             var r = new Random();
 
             while (Tiles.Count != 8)
             {
-                var nextValue = r.Next(8);
-                
+                var nextValue = r.Next(1, 9);
+
                 if (!Tiles.ContainsKey(nextValue))
                 {
-                    var memoryItem = Items.OrderBy(x => r.Next()).Take(1).First();
+                    var element = r.Next(0, 4);
 
-                    if(Tiles.Count(x=> x.Value.Id == memoryItem.Id) != 2)
+                    var memoryItem = Items.ElementAt(element);
+
+                    if (Tiles.Count(x => x.Value.Id == memoryItem.Id) != 2)
                     {
-                        memoryItem.Tile = (Tile) Enum.Parse(typeof (Tile), nextValue.ToString());
-                        Tiles.Add(nextValue, memoryItem);
+                        var item = (MemoryItem)memoryItem.Clone(); 
+                        item.TileNumber = nextValue;
+                        Tiles.Add(item.TileNumber, item);
                     }
                 }
             }
         }
     }
-}
+} 
