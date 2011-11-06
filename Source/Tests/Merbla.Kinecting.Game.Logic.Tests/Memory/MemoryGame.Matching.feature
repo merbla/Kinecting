@@ -9,3 +9,9 @@ Scenario: Add two numbers
 	And I have entered 70 into the calculator
 	When I press add
 	Then the result should be 120 on the screen
+
+Scenario: MatchTiles
+	Given A tile is selected
+	And a matching tile is chosen
+	When I select the matching tile
+	Then the result of Selecting the tile should recognise the match

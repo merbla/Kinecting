@@ -85,6 +85,25 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             this.ScenarioCleanup();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("MatchTiles")]
+        public virtual void MatchTiles()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("MatchTiles", ((string[])(null)));
+#line 13
+this.ScenarioSetup(scenarioInfo);
+#line 14
+ testRunner.Given("A tile is selected");
+#line 15
+ testRunner.And("a matching tile is chosen");
+#line 16
+ testRunner.When("I select the matching tile");
+#line 17
+ testRunner.Then("the result of Selecting the tile should recognise the match");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore
