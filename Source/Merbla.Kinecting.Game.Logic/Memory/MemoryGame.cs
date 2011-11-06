@@ -4,22 +4,20 @@ using System.Linq;
 
 namespace Merbla.Kinecting.Game.Logic.Memory
 {
-    public enum Tile
-    {
-        One, Two, Three, Four, Five, Six, Seven, Eight
-    }
 
     public class MemoryGame
     {
         public void SelectTile(Tile tile)
         {
             SelectTile(tile, true);
-            DetermineIfMatch();
+            DetermineIfMatch(tile);
         }
 
-        private void DetermineIfMatch()
+        private bool DetermineIfMatch(Tile tile)
         {
-            
+         
+            //Tiles.Where(x=>x.Value.Selected && x.Value.)
+            return false;
 
         }
 
@@ -123,11 +121,16 @@ namespace Merbla.Kinecting.Game.Logic.Memory
             while (Tiles.Count != 8)
             {
                 var nextValue = r.Next(8);
+                
                 if (!Tiles.ContainsKey(nextValue))
                 {
                     var memoryItem = Items.OrderBy(x => r.Next()).Take(1).First();
+
                     if(Tiles.Count(x=> x.Value.Id == memoryItem.Id) != 2)
+                    {
+                        memoryItem.Tile = (Tile) Enum.Parse(typeof (Tile), nextValue.ToString());
                         Tiles.Add(nextValue, memoryItem);
+                    }
                 }
             }
         }

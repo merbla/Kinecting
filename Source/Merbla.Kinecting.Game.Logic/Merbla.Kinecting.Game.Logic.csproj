@@ -43,6 +43,7 @@
     <Compile Include="Memory\LetterMemoryItems.cs" />
     <Compile Include="Memory\MemoryGame.cs" />
     <Compile Include="Memory\MemoryItem.cs" />
+    <Compile Include="Memory\Tile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

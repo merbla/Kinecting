@@ -20,5 +20,7 @@ namespace Merbla.Kinecting.Game.Logic.Memory
         public bool Matched { get; set; }
 
         public string Text { get; set; }
+
+        public Tile Tile { get; set; }
     }
 }
