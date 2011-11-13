@@ -111,12 +111,27 @@ namespace Merbla.Kinecting.ViewModels
             NotifyChanges();
         }
 
+        public void ShowAll()
+        {
+           // MemoryGame.ShowAll();
+            SelectTile(Tile.One);
+            SelectTile(Tile.Two);
+            SelectTile(Tile.Three);
+            SelectTile(Tile.Four);
+            SelectTile(Tile.Five);
+            SelectTile(Tile.Six);
+            SelectTile(Tile.Seven);
+            SelectTile(Tile.Eight);
+
+
+        }
+
         private void SelectTile(Tile selectedTile)
         {
             if (MemoryGame.TilesSelected == 2)
             {
-                MemoryGame.ResetTiles();
-                NotifyOfPropertyChange(() => MemoryGame);
+                //MemoryGame.ResetTiles();
+               // NotifyOfPropertyChange(() => MemoryGame);
             }
 
             MemoryGame.SelectTile(selectedTile);
@@ -126,18 +141,18 @@ namespace Merbla.Kinecting.ViewModels
         private void NotifyChanges()
         {
             //NotifyOfPropertyChange(() => MemoryGame);
-            NotifyOfPropertyChange(() => CanOpenTile1);
-            NotifyOfPropertyChange(() => CanOpenTile2);
-            NotifyOfPropertyChange(() => CanOpenTile3);
-            NotifyOfPropertyChange(() => CanOpenTile4);
-            NotifyOfPropertyChange(() => CanOpenTile5);
-            NotifyOfPropertyChange(() => CanOpenTile6);
-            NotifyOfPropertyChange(() => CanOpenTile7);
-            NotifyOfPropertyChange(() => CanOpenTile8);
-            NotifyOfPropertyChange(()=> TileSelected);
+            //NotifyOfPropertyChange(() => CanOpenTile1);
+            //NotifyOfPropertyChange(() => CanOpenTile2);
+            //NotifyOfPropertyChange(() => CanOpenTile3);
+            //NotifyOfPropertyChange(() => CanOpenTile4);
+            //NotifyOfPropertyChange(() => CanOpenTile5);
+            //NotifyOfPropertyChange(() => CanOpenTile6);
+            //NotifyOfPropertyChange(() => CanOpenTile7);
+            //NotifyOfPropertyChange(() => CanOpenTile8);
+            //NotifyOfPropertyChange(()=> TilesSelected);
         }
 
-        public int TileSelected
+        public int TilesSelected
         {
             get { return MemoryGame.TilesSelected; }
         }
@@ -182,7 +197,7 @@ namespace Merbla.Kinecting.ViewModels
             get { return !MemoryGame.Tile8.Value.Matched; }
         }
 
-
+     
 
     }
 }

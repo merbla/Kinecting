@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Caliburn.Micro;
 
 namespace Merbla.Kinecting.Game.Logic.Memory
 {
-    public class MemoryGame
+    public class MemoryGame : PropertyChangedBase
     {
-        public MemoryGame(IList<MemoryItem> items)
+        public MemoryGame(IEnumerable<MemoryItem> items)
         {
-            Items = items;
+            //TODO: Remove Caliburn and move to AOP for INotifyPropertyChanged
+            Items = new BindableCollection<MemoryItem>(items);
             Initalise();
         }
 
@@ -57,9 +59,19 @@ namespace Merbla.Kinecting.Game.Logic.Memory
             get { return Tiles.First(x => x.Value.Tile == Tile.Eight); }
         }
 
-        public IList<MemoryItem> Items { get; private set; }
+        private BindableCollection<MemoryItem> _items;
+        public BindableCollection<MemoryItem> Items
+        {
+            get { return _items; }
+            private set { _items = value; NotifyOfPropertyChange(()=> Items); }
+        }
 
-        public Dictionary<int, MemoryItem> Tiles { get; private set; }
+        private Dictionary<int, MemoryItem> _tiles;
+        public Dictionary<int, MemoryItem> Tiles
+        {
+            get { return _tiles; }
+            private set { _tiles = value; NotifyOfPropertyChange(()=> Tiles); }
+        }
 
         public bool SelectTile(Tile tile)
         {
@@ -81,46 +93,25 @@ namespace Merbla.Kinecting.Game.Logic.Memory
         {
             foreach (var memoryItem in Tiles)
             {
-                memoryItem.Value.Selected = false;
-                
+                SelectTile(memoryItem.Value.Tile, false);
             }
+        }
+
+        public void ShowAll()
+        {
+            foreach (var memoryItem in Tiles)
+            {
+                SelectTile(memoryItem.Value.Tile, true);
+            }  
         }
 
 
         private void SelectTile(Tile tile, bool selected)
         {
             //TODO: Validate only two selected tiles are allowed??
+            Tiles.First(x => x.Value.Tile == tile).Value.Selected = selected;
 
 
-            switch (tile)
-            {
-                case Tile.One:
-                    Tile1.Value.Selected = selected;
-                    break;
-                case Tile.Two:
-                    Tile2.Value.Selected = selected;
-                    break;
-                case Tile.Three:
-                    Tile3.Value.Selected = selected;
-                    break;
-                case Tile.Four:
-                    Tile4.Value.Selected = selected;
-                    break;
-                case Tile.Five:
-                    Tile5.Value.Selected = selected;
-                    break;
-                case Tile.Six:
-                    Tile6.Value.Selected = selected;
-                    break;
-                case Tile.Seven:
-                    Tile7.Value.Selected = selected;
-                    break;
-                case Tile.Eight:
-                    Tile8.Value.Selected = selected;
-                    break;
-                default:
-                    break;
-            }
         }
 
         private void Initalise()

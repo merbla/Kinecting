@@ -3,9 +3,8 @@ using Caliburn.Micro;
 
 namespace Merbla.Kinecting.Game.Logic.Memory
 {
-    //TODO: Remove Caliburn and move to AOP for INotifyPropertyChanged
+  
     public class MemoryItem : PropertyChangedBase, ICloneable
-
     {
         private Guid _id;
         private bool _matched;
@@ -13,6 +12,7 @@ namespace Merbla.Kinecting.Game.Logic.Memory
 
         public MemoryItem()
         {
+            //TODO: Remove Caliburn and move to AOP for INotifyPropertyChanged
             Id = Guid.NewGuid();
             Selected = false;
             Matched = false;
