@@ -113,8 +113,11 @@ namespace Merbla.Kinecting.ViewModels
 
         private void SelectTile(Tile selectedTile)
         {
-            if(MemoryGame.TilesSelected == 2)
+            if (MemoryGame.TilesSelected == 2)
+            {
                 MemoryGame.ResetTiles();
+                NotifyOfPropertyChange(() => MemoryGame);
+            }
 
             MemoryGame.SelectTile(selectedTile);
             NotifyChanges();
@@ -122,7 +125,7 @@ namespace Merbla.Kinecting.ViewModels
 
         private void NotifyChanges()
         {
-            NotifyOfPropertyChange(() => MemoryGame);
+            //NotifyOfPropertyChange(() => MemoryGame);
             NotifyOfPropertyChange(() => CanOpenTile1);
             NotifyOfPropertyChange(() => CanOpenTile2);
             NotifyOfPropertyChange(() => CanOpenTile3);

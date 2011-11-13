@@ -20,6 +20,12 @@
         <StackPanel Orientation="Horizontal">
             <controls:ContentControl3D Style="{StaticResource ThreeDContent}">
                 <i:Interaction.Triggers>
+                    <Core:DataTrigger  Binding="{Binding  MemoryGame.Tile1.Value.Selected , Mode=TwoWay}" Value="True">
+                        <i:InvokeCommandAction Command="controls:ContentControl3D.RotateCommand"/>
+                    </Core:DataTrigger>
+                    <Core:DataTrigger  Binding="{Binding MemoryGame.Tile1.Value.Selected, Mode=TwoWay}" Value="False">
+                        <i:InvokeCommandAction Command="controls:ContentControl3D.RotateCommand"/>
+                    </Core:DataTrigger>
                 </i:Interaction.Triggers>
                 <controls:ContentControl3D.BackContentTemplate>
                     <DataTemplate>
@@ -34,6 +40,12 @@
 
             <controls:ContentControl3D Style="{StaticResource ThreeDContent}">
                 <i:Interaction.Triggers>
+                    <Core:DataTrigger  Binding="{Binding  MemoryGame.Tile2.Value.Selected , Mode=TwoWay}" Value="True">
+                        <i:InvokeCommandAction Command="controls:ContentControl3D.RotateCommand"/>
+                    </Core:DataTrigger>
+                    <Core:DataTrigger  Binding="{Binding MemoryGame.Tile2.Value.Selected, Mode=TwoWay}" Value="False">
+                        <i:InvokeCommandAction Command="controls:ContentControl3D.RotateCommand"/>
+                    </Core:DataTrigger>
                 </i:Interaction.Triggers>
                 <controls:ContentControl3D.BackContentTemplate>
                     <DataTemplate>
@@ -48,6 +60,12 @@
 
             <controls:ContentControl3D Style="{StaticResource ThreeDContent}">
                 <i:Interaction.Triggers>
+                    <Core:DataTrigger  Binding="{Binding  MemoryGame.Tile3.Value.Selected , Mode=TwoWay}" Value="True">
+                        <i:InvokeCommandAction Command="controls:ContentControl3D.RotateCommand"/>
+                    </Core:DataTrigger>
+                    <Core:DataTrigger  Binding="{Binding MemoryGame.Tile3.Value.Selected, Mode=TwoWay}" Value="False">
+                        <i:InvokeCommandAction Command="controls:ContentControl3D.RotateCommand"/>
+                    </Core:DataTrigger>
                 </i:Interaction.Triggers>
                 <controls:ContentControl3D.BackContentTemplate>
                     <DataTemplate>
@@ -62,6 +80,12 @@
 
             <controls:ContentControl3D Style="{StaticResource ThreeDContent}">
                 <i:Interaction.Triggers>
+                    <Core:DataTrigger  Binding="{Binding  MemoryGame.Tile4.Value.Selected , Mode=TwoWay}" Value="True">
+                        <i:InvokeCommandAction Command="controls:ContentControl3D.RotateCommand"/>
+                    </Core:DataTrigger>
+                    <Core:DataTrigger  Binding="{Binding MemoryGame.Tile4.Value.Selected, Mode=TwoWay}" Value="False">
+                        <i:InvokeCommandAction Command="controls:ContentControl3D.RotateCommand"/>
+                    </Core:DataTrigger>
                 </i:Interaction.Triggers>
                 <controls:ContentControl3D.BackContentTemplate>
                     <DataTemplate>

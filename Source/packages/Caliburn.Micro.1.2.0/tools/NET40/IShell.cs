@@ -1,3 +1,4 @@
-﻿namespace $safeprojectname$ {
+﻿namespace Merbla.Kinecting {
     public interface IShell {}
 }
+

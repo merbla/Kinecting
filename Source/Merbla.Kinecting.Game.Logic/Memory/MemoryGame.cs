@@ -81,7 +81,8 @@ namespace Merbla.Kinecting.Game.Logic.Memory
         {
             foreach (var memoryItem in Tiles)
             {
-                DeselectTile(memoryItem.Value.Tile);
+                memoryItem.Value.Selected = false;
+                
             }
         }
 
