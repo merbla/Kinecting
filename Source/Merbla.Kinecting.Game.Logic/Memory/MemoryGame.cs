@@ -4,66 +4,17 @@ using System.Linq;
 
 namespace Merbla.Kinecting.Game.Logic.Memory
 {
-
     public class MemoryGame
     {
-        public bool SelectTile(Tile tile)
-        {
-            SelectTile(tile, true);
-            return DetermineIfMatch(tile);
-        }
-
-        private bool DetermineIfMatch(Tile tile)
-        {
-            return Tiles.Count(x => x.Value.Tile == tile) == 2;
-        }
-
-        public void UnselectTile(Tile tile)
-        {
-            SelectTile(tile, false);
-        }
-
-        private void SelectTile(Tile tile, bool selected)
-        {
-            //TODO: Validate only two selected tiles are allowed??
-
-
-            switch (tile)
-            {
-                case Tile.One:
-                    Tile1.Value.Selected = selected;
-                    break;
-                case Tile.Two:
-                    Tile2.Value.Selected = selected;
-                    break;
-                case Tile.Three:
-                    Tile3.Value.Selected = selected;
-                    break;
-                case Tile.Four:
-                    Tile4.Value.Selected = selected;
-                    break;
-                case Tile.Five:
-                    Tile5.Value.Selected = selected;
-                    break;
-                case Tile.Six:
-                    Tile6.Value.Selected = selected;
-                    break;
-                case Tile.Seven:
-                    Tile7.Value.Selected = selected;
-                    break;
-                case Tile.Eight:
-                    Tile8.Value.Selected = selected;
-                    break;
-                default:
-                    break;
-            }
-        }
-
-
         public MemoryGame(IList<MemoryItem> items)
         {
             Items = items;
             Initalise();
+        }
+
+        public int TilesSelected
+        {
+            get { return Tiles.Count(x => x.Value.Selected); }
         }
 
         public KeyValuePair<int, MemoryItem> Tile1
@@ -110,6 +61,67 @@ namespace Merbla.Kinecting.Game.Logic.Memory
 
         public Dictionary<int, MemoryItem> Tiles { get; private set; }
 
+        public bool SelectTile(Tile tile)
+        {
+            SelectTile(tile, true);
+            return DetermineIfMatch(tile);
+        }
+
+        private bool DetermineIfMatch(Tile tile)
+        {
+            return Tiles.Count(x => x.Value.Tile == tile) == 2;
+        }
+
+        public void DeselectTile(Tile tile)
+        {
+            SelectTile(tile, false);
+        }
+
+        public void ResetTiles()
+        {
+            foreach (var memoryItem in Tiles)
+            {
+                DeselectTile(memoryItem.Value.Tile);
+            }
+        }
+
+
+        private void SelectTile(Tile tile, bool selected)
+        {
+            //TODO: Validate only two selected tiles are allowed??
+
+
+            switch (tile)
+            {
+                case Tile.One:
+                    Tile1.Value.Selected = selected;
+                    break;
+                case Tile.Two:
+                    Tile2.Value.Selected = selected;
+                    break;
+                case Tile.Three:
+                    Tile3.Value.Selected = selected;
+                    break;
+                case Tile.Four:
+                    Tile4.Value.Selected = selected;
+                    break;
+                case Tile.Five:
+                    Tile5.Value.Selected = selected;
+                    break;
+                case Tile.Six:
+                    Tile6.Value.Selected = selected;
+                    break;
+                case Tile.Seven:
+                    Tile7.Value.Selected = selected;
+                    break;
+                case Tile.Eight:
+                    Tile8.Value.Selected = selected;
+                    break;
+                default:
+                    break;
+            }
+        }
+
         private void Initalise()
         {
             Tiles = new Dictionary<int, MemoryItem>();
@@ -128,7 +140,7 @@ namespace Merbla.Kinecting.Game.Logic.Memory
 
                     if (Tiles.Count(x => x.Value.Id == memoryItem.Id) != 2)
                     {
-                        var item = (MemoryItem)memoryItem.Clone(); 
+                        var item = (MemoryItem) memoryItem.Clone();
                         item.TileNumber = nextValue;
                         Tiles.Add(item.TileNumber, item);
                     }
@@ -136,4 +148,4 @@ namespace Merbla.Kinecting.Game.Logic.Memory
             }
         }
     }
-} 
+}

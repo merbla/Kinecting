@@ -26,97 +26,97 @@ namespace Merbla.Kinecting.ViewModels
 
         public void CloseTile1()
         {
-            MemoryGame.UnselectTile(Tile.One);
-            NotifyChanges();
+         
+            DeselectTile(Tile.One); 
         }
 
         public void OpenTile1()
         {
-            MemoryGame.SelectTile(Tile.One);
-            NotifyChanges();
+            SelectTile(Tile.One);
         }
 
         public void CloseTile3()
         {
-            MemoryGame.UnselectTile(Tile.Three);
-            NotifyChanges();
+            DeselectTile(Tile.Three);
         }
 
         public void OpenTile3()
         {
-            MemoryGame.SelectTile(Tile.Three);
-            NotifyChanges();
+            SelectTile(Tile.Three);
         }
 
         public void CloseTile2()
         {
-            MemoryGame.UnselectTile(Tile.Two);
-            NotifyChanges();
+            DeselectTile(Tile.Two);
         }
 
         public void OpenTile2()
         {
-            MemoryGame.SelectTile(Tile.Two);
-            NotifyChanges();
+            SelectTile(Tile.Two);
         }
 
         public void CloseTile4()
         {
-            MemoryGame.UnselectTile(Tile.Four);
-            NotifyChanges();
+            DeselectTile(Tile.Four);
         }
 
         public void OpenTile4()
         {
-            MemoryGame.SelectTile(Tile.Four);
-            NotifyChanges();
+            SelectTile(Tile.Four);
         }
 
         public void CloseTile5()
         {
-            MemoryGame.UnselectTile(Tile.Five);
-            NotifyChanges();
+            DeselectTile(Tile.Five);
         }
 
         public void OpenTile5()
         {
-            MemoryGame.SelectTile(Tile.Five);
-            NotifyChanges();
+            SelectTile(Tile.Five);
         }
 
         public void CloseTile8()
         {
-            MemoryGame.UnselectTile(Tile.Eight);
-            NotifyChanges();
+            DeselectTile(Tile.Eight);
         }
 
         public void OpenTile8()
         {
-            MemoryGame.SelectTile(Tile.Eight);
-            NotifyChanges();
+            SelectTile(Tile.Eight);
         }
 
         public void CloseTile6()
         {
-            MemoryGame.UnselectTile(Tile.Six);
-            NotifyChanges();
+            DeselectTile(Tile.Six);
         }
 
         public void OpenTile6()
         {
-            MemoryGame.SelectTile(Tile.Six);
-            NotifyChanges();
+            SelectTile(Tile.Six);
         }
 
         public void CloseTile7()
         {
-            MemoryGame.UnselectTile(Tile.Seven);
-            NotifyChanges();
+            DeselectTile(Tile.Seven);
         }
 
         public void OpenTile7()
         {
-            MemoryGame.SelectTile(Tile.Seven);
+            SelectTile(Tile.Seven);
+        }
+
+        private void DeselectTile(Tile selectedTile)
+        {
+            MemoryGame.DeselectTile(selectedTile);
+            NotifyChanges();
+        }
+
+        private void SelectTile(Tile selectedTile)
+        {
+            if(MemoryGame.TilesSelected == 2)
+                MemoryGame.ResetTiles();
+
+            MemoryGame.SelectTile(selectedTile);
             NotifyChanges();
         }
 
@@ -131,6 +131,12 @@ namespace Merbla.Kinecting.ViewModels
             NotifyOfPropertyChange(() => CanOpenTile6);
             NotifyOfPropertyChange(() => CanOpenTile7);
             NotifyOfPropertyChange(() => CanOpenTile8);
+            NotifyOfPropertyChange(()=> TileSelected);
+        }
+
+        public int TileSelected
+        {
+            get { return MemoryGame.TilesSelected; }
         }
 
         public bool CanOpenTile1
