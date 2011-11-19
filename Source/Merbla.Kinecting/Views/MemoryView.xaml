@@ -14,14 +14,28 @@
             <Setter Property="Height" Value="100"></Setter>
             <Setter Property="Width" Value="100"></Setter>
         </Style>
+		
+		
+        <!--<Storyboard x:Key="HideStoryboard">
+        	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="Tile1">
+        		<DiscreteObjectKeyFrame KeyTime="0:0:1" Value="{x:Static Visibility.Hidden}"/>
+        	</ObjectAnimationUsingKeyFrames>
+        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="Tile1">
+        		<EasingDoubleKeyFrame KeyTime="0:0:1" Value="0.005"/>
+        	</DoubleAnimationUsingKeyFrames>
+        </Storyboard>-->
 
     </UserControl.Resources>
-    <!--Command="controls:ContentControl3D.RotateCommand"-->
-
-
+	<UserControl.Triggers>
+		<EventTrigger RoutedEvent="FrameworkElement.Loaded">
+			<!--<BeginStoryboard Storyboard="{StaticResource HideStoryboard}"/>-->
+		</EventTrigger>
+	</UserControl.Triggers>
+    
     <StackPanel>
-        <Button Height="20" Content="Show All" x:Name="ShowAll">
-        </Button>
+        <!--<Button Height="20" Content="Show All" x:Name="ShowAll"/>-->
+
+        
         <StackPanel Orientation="Horizontal">
             <controls:ContentControl3D Style="{StaticResource ThreeDContent}" x:Name="Tile1"   >
                 <i:Interaction.Triggers>
