@@ -1,6 +1,7 @@
 ﻿#region Using Directives
 
 using System;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -123,7 +124,7 @@ namespace Merbla.Kinecting.WPF.Controls
             if (_rotationRequests > 0)
             {
                 --_rotationRequests;
-                Rotate();
+               // Rotate();
             }
         }
 
@@ -246,4 +247,13 @@ namespace Merbla.Kinecting.WPF.Controls
 
         #endregion // Private Helpers
     }
+    public enum RotationDirection{
+        LeftToRight,
+        RightToLeft,
+        TopToBottom,
+        BottomToTop
+    }
+
+   
+
 }

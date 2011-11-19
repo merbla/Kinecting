@@ -81,7 +81,17 @@ namespace Merbla.Kinecting.Game.Logic.Memory
 
         private bool DetermineIfMatch(Tile tile)
         {
-            return Tiles.Count(x => x.Value.Tile == tile) == 2;
+            var selectedTile = Tiles.First(x => x.Value.Tile == tile);
+            bool matched = Tiles.Count(x => x.Value.Id == selectedTile.Value.Id && x.Value.Selected) == 2;
+            if(matched)
+            {
+
+                selectedTile.Value.Matched = true;
+   
+            }
+
+            return matched;
+
         }
 
         public void DeselectTile(Tile tile)
@@ -110,8 +120,6 @@ namespace Merbla.Kinecting.Game.Logic.Memory
         {
             //TODO: Validate only two selected tiles are allowed??
             Tiles.First(x => x.Value.Tile == tile).Value.Selected = selected;
-
-
         }
 
         private void Initalise()

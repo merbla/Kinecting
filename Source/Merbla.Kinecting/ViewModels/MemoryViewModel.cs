@@ -122,33 +122,36 @@ namespace Merbla.Kinecting.ViewModels
             SelectTile(Tile.Six);
             SelectTile(Tile.Seven);
             SelectTile(Tile.Eight);
-
-
         }
 
         private void SelectTile(Tile selectedTile)
         {
             if (MemoryGame.TilesSelected == 2)
             {
-                //MemoryGame.ResetTiles();
-               // NotifyOfPropertyChange(() => MemoryGame);
+                MemoryGame.ResetTiles();
+                // NotifyOfPropertyChange(() => MemoryGame);
             }
-
             MemoryGame.SelectTile(selectedTile);
             NotifyChanges();
         }
 
         private void NotifyChanges()
         {
-            //NotifyOfPropertyChange(() => MemoryGame);
-            //NotifyOfPropertyChange(() => CanOpenTile1);
-            //NotifyOfPropertyChange(() => CanOpenTile2);
-            //NotifyOfPropertyChange(() => CanOpenTile3);
-            //NotifyOfPropertyChange(() => CanOpenTile4);
-            //NotifyOfPropertyChange(() => CanOpenTile5);
-            //NotifyOfPropertyChange(() => CanOpenTile6);
-            //NotifyOfPropertyChange(() => CanOpenTile7);
-            //NotifyOfPropertyChange(() => CanOpenTile8);
+            NotifyOfPropertyChange(() => MemoryGame);
+            NotifyOfPropertyChange(() => MemoryGame.Tile1.Value.Selected);
+            NotifyOfPropertyChange(() => MemoryGame.Tile2.Value.Selected);
+            NotifyOfPropertyChange(() => MemoryGame.Tile3.Value.Selected);
+            NotifyOfPropertyChange(() => MemoryGame.Tile4.Value.Selected);
+
+
+            NotifyOfPropertyChange(() => CanOpenTile1);
+            NotifyOfPropertyChange(() => CanOpenTile2);
+            NotifyOfPropertyChange(() => CanOpenTile3);
+            NotifyOfPropertyChange(() => CanOpenTile4);
+            NotifyOfPropertyChange(() => CanOpenTile5);
+            NotifyOfPropertyChange(() => CanOpenTile6);
+            NotifyOfPropertyChange(() => CanOpenTile7);
+            NotifyOfPropertyChange(() => CanOpenTile8);
             //NotifyOfPropertyChange(()=> TilesSelected);
         }
 

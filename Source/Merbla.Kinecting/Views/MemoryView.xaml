@@ -20,17 +20,20 @@
 
 
     <StackPanel>
-        <Button Height="20" Content="Show All" x:Name="ShowAll"/>
+        <Button Height="20" Content="Show All" x:Name="ShowAll">
+        </Button>
         <StackPanel Orientation="Horizontal">
-         
-            <controls:ContentControl3D Style="{StaticResource ThreeDContent}" >
+            <controls:ContentControl3D Style="{StaticResource ThreeDContent}" x:Name="Tile1"   >
                 <i:Interaction.Triggers>
+                    
                     <Core:DataTrigger  Binding="{Binding  MemoryGame.Tile1.Value.Selected , Mode=OneWay}" Value="true">
+                        <i:InvokeCommandAction Command="controls:ContentControl3D.RotateCommand" />                        
+                    </Core:DataTrigger>
+                    
+                    <Core:DataTrigger  Binding="{Binding MemoryGame.Tile1.Value.Selected, Mode=TwoWay}" Value="false">
                         <i:InvokeCommandAction Command="controls:ContentControl3D.RotateCommand"/>
                     </Core:DataTrigger>
-                    <Core:DataTrigger  Binding="{Binding MemoryGame.Tile1.Value.Selected, Mode=TwoWay}" Value="true">
-                        <i:InvokeCommandAction Command="controls:ContentControl3D.RotateCommand"/>
-                    </Core:DataTrigger>
+                    
                 </i:Interaction.Triggers>                
                 <controls:ContentControl3D.BackContentTemplate>
                     <DataTemplate>
@@ -99,9 +102,7 @@
                     </DataTemplate>
                 </controls:ContentControl3D.BackContentTemplate>
                 <Button x:Name="OpenTile4" Content="{Binding MemoryGame.Tile4.Value.Text}" Style="{StaticResource MemoryButtonStyle}" />
-            </controls:ContentControl3D>
-
- 
+            </controls:ContentControl3D> 
         
         </StackPanel>
         <StackPanel Orientation="Horizontal">
