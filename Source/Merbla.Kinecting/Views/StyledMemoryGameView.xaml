@@ -10,15 +10,14 @@
         <Style x:Key="MemoryContentStyle" TargetType="Button">
             <Setter Property="Height" Value="100"></Setter>
             <Setter Property="Width" Value="100"></Setter>
+            <Setter Property="FontSize" Value="20"/>
             <Style.Triggers>
                 <DataTrigger Binding="{Binding Value.Selected}" Value="False">
                     <Setter Property="FontWeight" Value="Normal"></Setter>
-
                 </DataTrigger>
                 <DataTrigger Binding="{Binding Value.Selected}" Value="True">
                     <Setter Property="FontWeight" Value="Bold"></Setter>
-                </DataTrigger>
-           
+                </DataTrigger>           
                 <DataTrigger Binding="{Binding Value.Matched}" Value="True">
                     <DataTrigger.EnterActions>
                         <BeginStoryboard>
@@ -33,50 +32,39 @@
                             </Storyboard>
                         </BeginStoryboard>
                     </DataTrigger.EnterActions>
-                </DataTrigger>
-                
-                
-            </Style.Triggers>
-
+                </DataTrigger> 
+            </Style.Triggers> 
         </Style>
-
-        <Storyboard x:Key="OnTile1Matched">
-            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="Tile1">
-                <DiscreteObjectKeyFrame KeyTime="0:0:1" Value="{x:Static Visibility.Hidden}"/>
-            </ObjectAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="Tile1">
-                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="0.005"/>
-            </DoubleAnimationUsingKeyFrames>
-        </Storyboard>
-        
-        <Style x:Key="ThreeDContent" TargetType="{x:Type controls:ContentControl3D}" >
-            <Setter Property="Height" Value="100"></Setter>
-            <Setter Property="Width" Value="100"></Setter>
-            <Style.Triggers>
-                <DataTrigger Binding="{Binding Value.Selected}" Value="False">
-                    <Setter Property="FontWeight" Value="Normal"></Setter>
-
-                </DataTrigger>
-                <DataTrigger Binding="{Binding Value.Selected}" Value="True">
-                    <Setter Property="FontWeight" Value="Bold"></Setter>
-                </DataTrigger>
-                <DataTrigger Binding="{Binding Matched}" Value="True">
-                </DataTrigger>
-            </Style.Triggers>
-        </Style>
-
+        <DataTemplate x:Key="ItemTemplate2">
+            <StackPanel>
+                <TextBlock Text="{Binding Title}"/>
+            </StackPanel>
+        </DataTemplate>
+        <ItemsPanelTemplate x:Key="ItemsPanelTemplate1">
+            <WrapPanel Orientation="Horizontal" />
+        </ItemsPanelTemplate>
     </UserControl.Resources>
 
-    <WrapPanel>
-        <ItemsControl ItemsSource="{Binding MemoryGame.Tiles}">
+    <ItemsControl ItemsSource="{Binding MemoryGame.Tiles}" ItemsPanel="{StaticResource ItemsPanelTemplate1}" >
+        
             <ItemsControl.ItemTemplate>
                 <DataTemplate >
-          
+                    <StackPanel Orientation="Horizontal">
                         <Button Content="{Binding Value.DisplayText}" 
                                 cal:Message.Attach="[Event Click] = [Action ChooseTile($dataContext)]" 
-                                Style="{StaticResource MemoryContentStyle}"  >                            
+                                Style="{StaticResource MemoryContentStyle}"  >
                         </Button>
+                        <!--<controls:ContentControl3D Content="{Binding Value.DisplayText}"  >
+                            <i:Interaction.Triggers>
+                                <Core:DataTrigger  Binding="{Binding  Value.Selected , Mode=OneWay}" Value="true">
+                                    <i:InvokeCommandAction Command="controls:ContentControl3D.RotateCommand"/>
+                                </Core:DataTrigger>
+                            </i:Interaction.Triggers>                            
+                        </controls:ContentControl3D>-->
+                    </StackPanel>
+                     
 
+     
 
                         <!--<controls:ContentControl3D Style="{StaticResource ThreeDContent}" >
                             <i:Interaction.Triggers>
@@ -100,6 +88,5 @@
                 
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
-        </ItemsControl>
-    </WrapPanel>
+        </ItemsControl> 
 </UserControl>
