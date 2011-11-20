@@ -108,7 +108,7 @@ namespace Merbla.Kinecting.ViewModels
             SelectTile(Tile.Seven);
         }
 
-        private void DeselectTile(Tile selectedTile)
+        protected void DeselectTile(Tile selectedTile)
         {
             MemoryGame.DeselectTile(selectedTile);
             NotifyChanges();
@@ -127,7 +127,7 @@ namespace Merbla.Kinecting.ViewModels
             SelectTile(Tile.Eight);
         }
 
-        private void SelectTile(Tile selectedTile)
+        protected void SelectTile(Tile selectedTile)
         {
             if (MemoryGame.TilesSelected == 2)
             {
