@@ -13,22 +13,29 @@ namespace Merbla.Kinecting.ViewModels
 
         public void Close(Button o)
         {
+            var item = o.Tag is KeyValuePair<int, MemoryItem>
+                        ? (KeyValuePair<int, MemoryItem>) o.Tag
+                        : new KeyValuePair<int, MemoryItem>();
 
-            var m = o.Tag is KeyValuePair<int, MemoryItem> ? (KeyValuePair<int, MemoryItem>) o.Tag : new KeyValuePair<int, MemoryItem>();
-
-            if(m.Key!=0)
-                DeselectTile(m.Value.Tile);
-
-        }
-
-        public void Close1(KeyValuePair<int, MemoryItem> item)
-        {
-            SelectTile(item.Value.Tile);
+            if (item.Key != 0)
+                DeselectTile(item.Value.Tile);
         }
 
         public void Open(KeyValuePair<int, MemoryItem> item)
         {
             SelectTile(item.Value.Tile);
+        }
+
+        public void ChooseTile(KeyValuePair<int, MemoryItem> item)
+        {
+            if(item.Value.Selected)
+            {
+                DeselectTile(item.Value.Tile);
+            }
+            else
+            {
+                SelectTile(item.Value.Tile);
+            }
         }
     }
 }

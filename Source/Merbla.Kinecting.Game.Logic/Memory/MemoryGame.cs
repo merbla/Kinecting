@@ -85,7 +85,10 @@ namespace Merbla.Kinecting.Game.Logic.Memory
             bool matched = Tiles.Count(x => x.Value.Id == selectedTile.Value.Id && x.Value.Selected) == 2;
             if(matched)
             {
-                selectedTile.Value.Matched = true;
+                //Set all to matched with the same Tile
+                Tiles.Where(x => x.Value.Id == selectedTile.Value.Id)
+                    .ToList().ForEach(x=> x.Value.Matched=true);
+                //selectedTile.Value.Matched = true;
             }
 
             return matched;

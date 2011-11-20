@@ -37,6 +37,7 @@ namespace Merbla.Kinecting.Game.Logic.Memory
             {
                 _selected = value;
                 NotifyOfPropertyChange(() => Selected);
+                NotifyOfPropertyChange(() => DisplayText);
             }
         }
 
@@ -47,6 +48,14 @@ namespace Merbla.Kinecting.Game.Logic.Memory
             {
                 _matched = value;
                 NotifyOfPropertyChange(() => Matched);
+            }
+        }
+
+        public string DisplayText
+        {
+            get
+            {
+                return Selected ? HiddenText : Text;
             }
         }
 

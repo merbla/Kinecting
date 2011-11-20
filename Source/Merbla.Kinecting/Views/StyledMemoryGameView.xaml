@@ -13,7 +13,49 @@
             <Style.Triggers>
                 <DataTrigger Binding="{Binding Value.Selected}" Value="False">
                     <Setter Property="FontWeight" Value="Normal"></Setter>
-                    
+
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Value.Selected}" Value="True">
+                    <Setter Property="FontWeight" Value="Bold"></Setter>
+                </DataTrigger>
+           
+                <DataTrigger Binding="{Binding Value.Matched}" Value="True">
+                    <DataTrigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard >
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)"  >
+                                    <DiscreteObjectKeyFrame KeyTime="0:0:1" Value="{x:Static Visibility.Hidden}"/>
+                                </ObjectAnimationUsingKeyFrames>
+                                <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)"  >
+                                    <EasingDoubleKeyFrame KeyTime="0:0:1" Value="0.005"/>
+                                </DoubleAnimationUsingKeyFrames>
+                                
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </DataTrigger.EnterActions>
+                </DataTrigger>
+                
+                
+            </Style.Triggers>
+
+        </Style>
+
+        <Storyboard x:Key="OnTile1Matched">
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="Tile1">
+                <DiscreteObjectKeyFrame KeyTime="0:0:1" Value="{x:Static Visibility.Hidden}"/>
+            </ObjectAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="Tile1">
+                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="0.005"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        
+        <Style x:Key="ThreeDContent" TargetType="{x:Type controls:ContentControl3D}" >
+            <Setter Property="Height" Value="100"></Setter>
+            <Setter Property="Width" Value="100"></Setter>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Value.Selected}" Value="False">
+                    <Setter Property="FontWeight" Value="Normal"></Setter>
+
                 </DataTrigger>
                 <DataTrigger Binding="{Binding Value.Selected}" Value="True">
                     <Setter Property="FontWeight" Value="Bold"></Setter>
@@ -22,10 +64,6 @@
                 </DataTrigger>
             </Style.Triggers>
         </Style>
-        <Style x:Key="ThreeDContent" TargetType="{x:Type controls:ContentControl3D}" >
-            <Setter Property="Height" Value="100"></Setter>
-            <Setter Property="Width" Value="100"></Setter>
-        </Style>
 
     </UserControl.Resources>
 
@@ -33,14 +71,14 @@
         <ItemsControl ItemsSource="{Binding MemoryGame.Tiles}">
             <ItemsControl.ItemTemplate>
                 <DataTemplate >
-                    <StackPanel >
-                        <!--<Button Content="{Binding Value.Text}" 
-                                cal:Message.Attach="[Event Click] = [Action Open($dataContext)]" 
+          
+                        <Button Content="{Binding Value.DisplayText}" 
+                                cal:Message.Attach="[Event Click] = [Action ChooseTile($dataContext)]" 
                                 Style="{StaticResource MemoryContentStyle}"  >                            
-                        </Button>-->
+                        </Button>
 
 
-                        <controls:ContentControl3D Style="{StaticResource ThreeDContent}" >
+                        <!--<controls:ContentControl3D Style="{StaticResource ThreeDContent}" >
                             <i:Interaction.Triggers>
                                 <Core:DataTrigger  Binding="{Binding   Value.Selected , Mode=OneWay}" Value="true">
                                     <i:InvokeCommandAction Command="controls:ContentControl3D.RotateCommand"/>
@@ -58,11 +96,8 @@
                                 </DataTemplate>
                             </controls:ContentControl3D.BackContentTemplate>
                             <Button Content="{Binding Value.Text}" cal:Message.Attach="[Event Click] = [Action Open($dataContext)]"  />
-                        </controls:ContentControl3D>
-
-
-
-                    </StackPanel> 
+                        </controls:ContentControl3D>-->
+                
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
