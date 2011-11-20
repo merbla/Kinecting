@@ -9,14 +9,33 @@
         <Style x:Key="MemoryButtonStyle" TargetType="{x:Type Button}" >
             <Setter Property="Height" Value="100"></Setter>
             <Setter Property="Width" Value="100"></Setter>
+            <Style.Triggers>
+         
+            </Style.Triggers>
+            
         </Style>
         <Style x:Key="ThreeDContent" TargetType="{x:Type controls:ContentControl3D}" >
             <Setter Property="Height" Value="100"></Setter>
             <Setter Property="Width" Value="100"></Setter>
         </Style>
-		
-		
-        <!--<Storyboard x:Key="HideStoryboard">
+
+
+
+        <!--<Style TargetType="Button" x:Key="but">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Selected}" Value="False">
+                    <DataTrigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Duration="0:0:1"
+                                             To="0"
+                                             Storyboard.TargetProperty="(LayoutTransform).(ScaleTransform.ScaleY)"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </DataTrigger.EnterActions>
+                </DataTrigger>-->
+
+                <!--<Storyboard x:Key="HideStoryboard">
         	<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="Tile1">
         		<DiscreteObjectKeyFrame KeyTime="0:0:1" Value="{x:Static Visibility.Hidden}"/>
         	</ObjectAnimationUsingKeyFrames>
@@ -24,26 +43,40 @@
         		<EasingDoubleKeyFrame KeyTime="0:0:1" Value="0.005"/>
         	</DoubleAnimationUsingKeyFrames>
         </Storyboard>-->
+        <Storyboard x:Key="OnTile1Matched">
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="Tile1">
+                <DiscreteObjectKeyFrame KeyTime="0:0:1" Value="{x:Static Visibility.Hidden}"/>
+            </ObjectAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="Tile1">
+                <EasingDoubleKeyFrame KeyTime="0:0:1" Value="0.005"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+
 
     </UserControl.Resources>
-	<UserControl.Triggers>
-		<EventTrigger RoutedEvent="FrameworkElement.Loaded">
-			<!--<BeginStoryboard Storyboard="{StaticResource HideStoryboard}"/>-->
-		</EventTrigger>
-	</UserControl.Triggers>
+
     
     <StackPanel>
         <!--<Button Height="20" Content="Show All" x:Name="ShowAll"/>-->
 
         
+        
         <StackPanel Orientation="Horizontal">
             <controls:ContentControl3D Style="{StaticResource ThreeDContent}" x:Name="Tile1"   >
-                <i:Interaction.Triggers>
-                    
+                <controls:ContentControl3D.Triggers>
+                    <!--<EventTrigger RoutedEvent="Binding=}" >
+                        <BeginStoryboard Storyboard="{StaticResource OnTile1Matched}" />
+                        
+                    </EventTrigger>-->
+                </controls:ContentControl3D.Triggers>
+                
+                
+                <i:Interaction.Triggers>  
                     <Core:DataTrigger  Binding="{Binding  MemoryGame.Tile1.Value.Selected , Mode=OneWay}" Value="true">
-                        <i:InvokeCommandAction Command="controls:ContentControl3D.RotateCommand" />                        
+                        <i:InvokeCommandAction Command="controls:ContentControl3D.RotateCommand" />
+                        
                     </Core:DataTrigger>
-                    
+
                     <Core:DataTrigger  Binding="{Binding MemoryGame.Tile1.Value.Selected, Mode=TwoWay}" Value="false">
                         <i:InvokeCommandAction Command="controls:ContentControl3D.RotateCommand"/>
                     </Core:DataTrigger>

@@ -1,0 +1,75 @@
+﻿<UserControl x:Class="Merbla.Kinecting.Views.StyledMemoryGameView"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+              xmlns:controls="clr-namespace:Merbla.Kinecting.WPF.Controls;assembly=Merbla.Kinecting.WPF.Controls"
+             xmlns:cal="http://www.caliburnproject.org"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:Core="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions">
+
+    <UserControl.Resources>
+        <Style x:Key="MemoryButtonStyle" TargetType="{x:Type Button}" >
+            <Setter Property="Height" Value="100"></Setter>
+            <Setter Property="Width" Value="100"></Setter>
+            <Style.Triggers> 
+                <DataTrigger Binding="{Binding Selected}" Value="False">
+                    
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Selected}" Value="True">
+
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Matched}" Value="True">
+
+                </DataTrigger>
+            </Style.Triggers>
+
+        </Style>
+        <Style x:Key="MemoryContentStyle" TargetType="StackPanel">
+            <Setter Property="Height" Value="100"></Setter>
+            <Setter Property="Width" Value="100"></Setter>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Selected}" Value="False">
+
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Selected}" Value="True">
+
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Matched}" Value="True">
+
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="ThreeDContent" TargetType="{x:Type controls:ContentControl3D}" >
+            <Setter Property="Height" Value="100"></Setter>
+            <Setter Property="Width" Value="100"></Setter>
+        </Style>
+    </UserControl.Resources>
+
+    <WrapPanel>
+        <ItemsControl ItemsSource="{Binding MemoryGame.Tiles}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate >
+                    <StackPanel Style="{StaticResource MemoryContentStyle}">
+                        <Button Content="{Binding Value.Text}" cal:Message.Attach="[Event Click] = [Action Open($dataContext)]" >
+                            
+                        </Button>
+                    </StackPanel>
+                               
+                    <!--<controls:ContentControl3D Style="{StaticResource ThreeDContent}"    >
+             
+                        
+                        <controls:ContentControl3D.BackContentTemplate>
+                            <DataTemplate>
+                                <Button Content="{Binding RelativeSource={RelativeSource AncestorType={x:Type controls:ContentControl3D}}, Path=Value.HiddenText}"
+                                Style="{StaticResource MemoryButtonStyle}"
+                               x:Name="CloseTile1"   cal:Message.Attach="CloseTile1()"/>
+                            </DataTemplate>
+                        </controls:ContentControl3D.BackContentTemplate>
+                        <Button x:Name="OpenTile1" Content="{Binding Value.Text}" Style="{StaticResource MemoryButtonStyle}" />
+                    </controls:ContentControl3D>-->
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+            
+        </ItemsControl>
+
+    </WrapPanel>
+</UserControl>

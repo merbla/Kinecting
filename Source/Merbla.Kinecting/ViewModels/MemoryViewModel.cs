@@ -35,6 +35,9 @@ namespace Merbla.Kinecting.ViewModels
             SelectTile(Tile.One);
         }
 
+
+
+
         public void CloseTile3()
         {
             DeselectTile(Tile.Three);
