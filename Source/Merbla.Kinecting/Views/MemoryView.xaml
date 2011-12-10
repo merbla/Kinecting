@@ -53,13 +53,8 @@
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
 
-
-    </UserControl.Resources>
-
-    
-    <StackPanel> 
-     
- 
+    </UserControl.Resources>    
+    <StackPanel>  
 
         <StackPanel Orientation="Horizontal">
             <controls:ContentControl3D Style="{StaticResource ThreeDContent}" x:Name="Tile1"   >
@@ -90,9 +85,7 @@
                     </DataTemplate>
                 </controls:ContentControl3D.BackContentTemplate>                
                 <Button x:Name="OpenTile1" Content="{Binding MemoryGame.Tile1.Value.Text}" Style="{StaticResource MemoryButtonStyle}" />
-            </controls:ContentControl3D>
-
-    
+            </controls:ContentControl3D> 
 
             <controls:ContentControl3D Style="{StaticResource ThreeDContent}" >
                 <i:Interaction.Triggers>
@@ -228,16 +221,7 @@
                 </controls:ContentControl3D.BackContentTemplate>
                 <Button x:Name="OpenTile8" Content="{Binding MemoryGame.Tile8.Value.Text}" Style="{StaticResource MemoryButtonStyle}" />
             </controls:ContentControl3D>
-
-
-
-
-
-
-
-
-
-
+  
         </StackPanel>
       
   </StackPanel>
