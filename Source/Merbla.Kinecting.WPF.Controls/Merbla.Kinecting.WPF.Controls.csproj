@@ -35,6 +35,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Coding4Fun.Kinect.Wpf">
+      <HintPath>..\packages\Kinect\Coding4Fun.Kinect.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Research.Kinect, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Kinect\Microsoft.Research.Kinect.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -53,6 +60,12 @@
     <Compile Include="ContentControl3D.cs" />
     <Compile Include="Controls\MemoryButton.xaml.cs">
       <DependentUpon>MemoryButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HandCursor.xaml.cs">
+      <DependentUpon>HandCursor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HoverButton.xaml.cs">
+      <DependentUpon>HoverButton.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -77,11 +90,21 @@
     </None>
     <AppDesigner Include="Properties\" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Images\Hand.png" />
+  </ItemGroup>
   <ItemGroup>
     <Page Include="Controls\MemoryButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HandCursor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="HoverButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>

@@ -30,7 +30,8 @@ namespace Merbla.Kinecting.ViewModels
         {
             if(item.Value.Selected)
             {
-                DeselectTile(item.Value.Tile);
+                //Do nothing
+                //DeselectTile(item.Value.Tile);
             }
             else
             {
