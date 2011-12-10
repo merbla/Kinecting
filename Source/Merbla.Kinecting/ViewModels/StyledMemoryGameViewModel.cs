@@ -1,11 +1,15 @@
 ﻿using System.Collections.Generic;
 using System.Windows.Controls;
 using Caliburn.Micro;
+using Coding4Fun.Kinect.Wpf;
+using Merbla.Kinecting.Common.Extensions;
+using Merbla.Kinecting.Events;
 using Merbla.Kinecting.Game.Logic.Memory;
+using Microsoft.Research.Kinect.Nui;
 
 namespace Merbla.Kinecting.ViewModels
 {
-    public class StyledMemoryGameViewModel : MemoryViewModel
+    public class StyledMemoryGameViewModel : MemoryViewModel, IHandle<KinectingEvent<SkeletonFrameReadyEventArgs>>
     {
         public StyledMemoryGameViewModel(IEventAggregator eventAggregator) : base(eventAggregator)
         {
@@ -36,6 +40,19 @@ namespace Merbla.Kinecting.ViewModels
             else
             {
                 SelectTile(item.Value.Tile);
+            }
+        }
+
+        public void Handle(KinectingEvent<SkeletonFrameReadyEventArgs> message)
+        {
+            var data = message.MessageObject.SkeletonFrame.GetFirstTrackedSkeleton();
+            if (data != null)
+            {
+                var handJoint = data.Joints[SelectedCursorInteraction];
+                TrackedJoint = handJoint;
+                var scaledJoint = handJoint.ScaleTo((int)CanvasWidth, (int)CanvasHeight, 0.5f, 0.5f);
+                HandCursorX = scaledJoint.Position.X;
+                HandCursorY = scaledJoint.Position.Y;
             }
         }
     }

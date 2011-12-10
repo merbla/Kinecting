@@ -8,20 +8,15 @@
              xmlns:Tk="clr-namespace:Coding4Fun.Kinect.Wpf.Controls;assembly=Coding4Fun.Kinect.Wpf">
     <UserControl.Resources>
         <Style x:Key="MemoryButtonStyle" TargetType="{x:Type Button}" >
-            <Setter Property="Height" Value="100"></Setter>
-            <Setter Property="Width" Value="100"></Setter>
-            <Style.Triggers>
-         
-            </Style.Triggers>
-            
+            <Setter Property="Height" Value="50"></Setter>
+            <Setter Property="Width" Value="50"></Setter>
+            <Style.Triggers>         
+            </Style.Triggers>            
         </Style>
         <Style x:Key="ThreeDContent" TargetType="{x:Type controls:ContentControl3D}" >
-            <Setter Property="Height" Value="100"></Setter>
-            <Setter Property="Width" Value="100"></Setter>
+            <Setter Property="Height" Value="50"></Setter>
+            <Setter Property="Width" Value="50"></Setter>
         </Style>
-
-
-
         <!--<Style TargetType="Button" x:Key="but">
             <Style.Triggers>
                 <DataTrigger Binding="{Binding Selected}" Value="False">
@@ -53,39 +48,34 @@
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
 
-    </UserControl.Resources>    
-    <StackPanel>  
-
+    </UserControl.Resources>
+    <Canvas x:Name="canvas" Height="{Binding CanvasHeight}" Width="{Binding CanvasWidth}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <controls:HandCursor   Canvas.Top="{Binding HandCursorY}" Canvas.Left="{Binding HandCursorX}" TrackedJoint="{Binding TrackedJoint}"  />
+        <!--TODO: Refactor Buttons for Memory Tiles-->
         <StackPanel Orientation="Horizontal">
             <controls:ContentControl3D Style="{StaticResource ThreeDContent}" x:Name="Tile1"   >
                 <controls:ContentControl3D.Triggers>
                     <!--<EventTrigger RoutedEvent="Binding=}" >
-                        <BeginStoryboard Storyboard="{StaticResource OnTile1Matched}" />
-                        
+                        <BeginStoryboard Storyboard="{StaticResource OnTile1Matched}" />                        
                     </EventTrigger>-->
                 </controls:ContentControl3D.Triggers>
-                
-                
-                <i:Interaction.Triggers>  
+                <i:Interaction.Triggers>
                     <Core:DataTrigger  Binding="{Binding  MemoryGame.Tile1.Value.Selected , Mode=OneWay}" Value="true">
                         <i:InvokeCommandAction Command="controls:ContentControl3D.RotateCommand" />
-                        
                     </Core:DataTrigger>
-
                     <Core:DataTrigger  Binding="{Binding MemoryGame.Tile1.Value.Selected, Mode=TwoWay}" Value="false">
                         <i:InvokeCommandAction Command="controls:ContentControl3D.RotateCommand"/>
                     </Core:DataTrigger>
-                    
-                </i:Interaction.Triggers>                
+                </i:Interaction.Triggers>
                 <controls:ContentControl3D.BackContentTemplate>
                     <DataTemplate>
                         <Button Content="{Binding RelativeSource={RelativeSource AncestorType={x:Type controls:ContentControl3D}}, Path=DataContext.MemoryGame.Tile1.Value.HiddenText}"
                                 Style="{StaticResource MemoryButtonStyle}"
                                x:Name="CloseTile1"   cal:Message.Attach="CloseTile1()"/>
                     </DataTemplate>
-                </controls:ContentControl3D.BackContentTemplate>                
+                </controls:ContentControl3D.BackContentTemplate>
                 <Button x:Name="OpenTile1" Content="{Binding MemoryGame.Tile1.Value.Text}" Style="{StaticResource MemoryButtonStyle}" />
-            </controls:ContentControl3D> 
+            </controls:ContentControl3D>
 
             <controls:ContentControl3D Style="{StaticResource ThreeDContent}" >
                 <i:Interaction.Triggers>
@@ -142,10 +132,9 @@
                     </DataTemplate>
                 </controls:ContentControl3D.BackContentTemplate>
                 <Button x:Name="OpenTile4" Content="{Binding MemoryGame.Tile4.Value.Text}" Style="{StaticResource MemoryButtonStyle}" />
-            </controls:ContentControl3D> 
-        
-        </StackPanel>
-        <StackPanel Orientation="Horizontal">
+            </controls:ContentControl3D>
+
+
             <controls:ContentControl3D Style="{StaticResource ThreeDContent}" >
                 <i:Interaction.Triggers>
                     <Core:DataTrigger  Binding="{Binding  MemoryGame.Tile5.Value.Selected , Mode=OneWay}" Value="true">
@@ -221,10 +210,10 @@
                 </controls:ContentControl3D.BackContentTemplate>
                 <Button x:Name="OpenTile8" Content="{Binding MemoryGame.Tile8.Value.Text}" Style="{StaticResource MemoryButtonStyle}" />
             </controls:ContentControl3D>
-  
+
         </StackPanel>
-      
-  </StackPanel>
+
+    </Canvas>
 </UserControl>
 
  

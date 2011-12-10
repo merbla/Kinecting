@@ -1,5 +1,9 @@
 ﻿using Caliburn.Micro;
+using Coding4Fun.Kinect.Wpf;
+using Merbla.Kinecting.Common.Extensions;
+using Merbla.Kinecting.Events;
 using Merbla.Kinecting.Game.Logic.Memory;
+using Microsoft.Research.Kinect.Nui;
 
 namespace Merbla.Kinecting.ViewModels
 {
@@ -11,7 +15,7 @@ namespace Merbla.Kinecting.ViewModels
         public MemoryViewModel(IEventAggregator eventAggregator) : base(eventAggregator)
         {
             var items = new LetterMemoryItems();
-            MemoryGame = new MemoryGame(items);
+            MemoryGame = new MemoryGame(items); 
         }
         
         public MemoryGame MemoryGame
@@ -33,10 +37,7 @@ namespace Merbla.Kinecting.ViewModels
         public void OpenTile1()
         {
             SelectTile(Tile.One);
-        }
-
-
-
+        } 
 
         public void CloseTile3()
         {
@@ -203,7 +204,6 @@ namespace Merbla.Kinecting.ViewModels
             get { return !MemoryGame.Tile8.Value.Matched; }
         }
 
-     
-
+ 
     }
 }

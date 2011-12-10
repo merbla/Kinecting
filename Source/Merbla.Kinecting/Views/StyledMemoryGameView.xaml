@@ -8,9 +8,9 @@
 
     <UserControl.Resources> 
         <Style x:Key="MemoryContentStyle" TargetType="Button">
-            <Setter Property="Height" Value="300"></Setter>
-            <Setter Property="Width" Value="300"></Setter>
-            <Setter Property="FontSize" Value="50"/>
+            <Setter Property="Height" Value="50"></Setter>
+            <Setter Property="Width" Value="50"></Setter>
+            <Setter Property="FontSize" Value="20"/>
             <Style.Triggers>
                 <DataTrigger Binding="{Binding Value.Selected}" Value="False">
                     <Setter Property="FontWeight" Value="Normal"></Setter>
@@ -44,9 +44,11 @@
             <WrapPanel Orientation="Horizontal" />
         </ItemsPanelTemplate>
     </UserControl.Resources>
+    <Canvas x:Name="canvas" Height="{Binding CanvasHeight}" Width="{Binding CanvasWidth}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+       
 
-    <ItemsControl ItemsSource="{Binding MemoryGame.Tiles}" ItemsPanel="{StaticResource ItemsPanelTemplate1}" >
-        
+        <ItemsControl ItemsSource="{Binding MemoryGame.Tiles}" ItemsPanel="{StaticResource ItemsPanelTemplate1}"   >
+
             <ItemsControl.ItemTemplate>
                 <DataTemplate >
                     <StackPanel Orientation="Horizontal">
@@ -62,11 +64,11 @@
                             </i:Interaction.Triggers>                            
                         </controls:ContentControl3D>-->
                     </StackPanel>
-                     
 
-     
 
-                        <!--<controls:ContentControl3D Style="{StaticResource ThreeDContent}" >
+
+
+                    <!--<controls:ContentControl3D Style="{StaticResource ThreeDContent}" >
                             <i:Interaction.Triggers>
                                 <Core:DataTrigger  Binding="{Binding   Value.Selected , Mode=OneWay}" Value="true">
                                     <i:InvokeCommandAction Command="controls:ContentControl3D.RotateCommand"/>
@@ -85,8 +87,11 @@
                             </controls:ContentControl3D.BackContentTemplate>
                             <Button Content="{Binding Value.Text}" cal:Message.Attach="[Event Click] = [Action Open($dataContext)]"  />
                         </controls:ContentControl3D>-->
-                
+
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
-        </ItemsControl> 
+        </ItemsControl>
+
+        <controls:HandCursor   Canvas.Top="{Binding HandCursorY}" Canvas.Left="{Binding HandCursorX}" TrackedJoint="{Binding TrackedJoint}"  />
+    </Canvas>
 </UserControl>
