@@ -4,7 +4,8 @@
               xmlns:controls="clr-namespace:Merbla.Kinecting.WPF.Controls;assembly=Merbla.Kinecting.WPF.Controls"
              xmlns:cal="http://www.caliburnproject.org"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-             xmlns:Core="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions">
+             xmlns:Core="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions"
+             xmlns:Tk="clr-namespace:Coding4Fun.Kinect.Wpf.Controls;assembly=Coding4Fun.Kinect.Wpf">
     <UserControl.Resources>
         <Style x:Key="MemoryButtonStyle" TargetType="{x:Type Button}" >
             <Setter Property="Height" Value="100"></Setter>
@@ -56,11 +57,10 @@
     </UserControl.Resources>
 
     
-    <StackPanel>
-        <!--<Button Height="20" Content="Show All" x:Name="ShowAll"/>-->
+    <StackPanel> 
+     
+ 
 
-        
-        
         <StackPanel Orientation="Horizontal">
             <controls:ContentControl3D Style="{StaticResource ThreeDContent}" x:Name="Tile1"   >
                 <controls:ContentControl3D.Triggers>
@@ -243,42 +243,4 @@
   </StackPanel>
 </UserControl>
 
-
-
-<!--
-    
-    
-            <controls:ContentControl3D Style="{StaticResource ThreeDContent}">
-                <i:Interaction.Triggers>
-                </i:Interaction.Triggers>
-                <controls:ContentControl3D.BackContentTemplate>
-                    <DataTemplate>
-                        <Button Content="{Binding RelativeSource={RelativeSource AncestorType={x:Type controls:ContentControl3D}}, Path=DataContext.MemoryGame.Tile8.Value.HiddenText}"
-                                Style="{StaticResource MemoryButtonStyle}"
-                                Command="controls:ContentControl3D.RotateCommand"
-                                x:Name="CloseTile8"/>
-                    </DataTemplate>
-                </controls:ContentControl3D.BackContentTemplate>
-                <Button x:Name="OpenTile8" Content="{Binding MemoryGame.Tile8.Value.Text}" Style="{StaticResource MemoryButtonStyle}" Command="controls:ContentControl3D.RotateCommand"/>
-            </controls:ContentControl3D>
-    
-    <controls:ContentControl3D Style="{StaticResource ThreeDContent}">
-                <i:Interaction.Triggers>
-                    <Core:DataTrigger  Binding="{Binding  MemoryGame.Tile1.Value.Selected , Mode=TwoWay}" Value="True">
-                        <i:InvokeCommandAction Command="controls:ContentControl3D.RotateCommand"/>
-                    </Core:DataTrigger>
-                    <Core:DataTrigger  Binding="{Binding MemoryGame.Tile1.Value.Selected, Mode=TwoWay}" Value="False">
-                        <i:InvokeCommandAction Command="controls:ContentControl3D.RotateCommand"/>
-                    </Core:DataTrigger>
-                </i:Interaction.Triggers>
-                <controls:ContentControl3D.BackContentTemplate>
-                    <DataTemplate>
-                        <Button Content="{Binding RelativeSource={RelativeSource AncestorType={x:Type controls:ContentControl3D}}, Path=DataContext.MemoryGame.Tile1.Value.HiddenText}"
-                                Style="{StaticResource MemoryButtonStyle}"
-                                Command="controls:ContentControl3D.RotateCommand"
-                                x:Name="CloseTile1"/>
-                    </DataTemplate>
-                </controls:ContentControl3D.BackContentTemplate>
-                <Button x:Name="OpenTile1" Content="{Binding MemoryGame.Tile1.Value.Text}" Style="{StaticResource MemoryButtonStyle}" Command="controls:ContentControl3D.RotateCommand"/>
-            </controls:ContentControl3D>-->
  

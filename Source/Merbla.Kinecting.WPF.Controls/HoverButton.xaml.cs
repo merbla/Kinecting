@@ -7,22 +7,39 @@ using System.Windows.Media.Animation;
 namespace Merbla.Kinecting.WPF.Controls
 {
     /// <summary>
-    /// Interaction logic for HoverButton.xaml
+    ///   Interaction logic for HoverButton.xaml
     /// </summary>
     public partial class HoverButton : UserControl
     {
-
         #region Fields
 
         //animation related
+        private readonly Duration reverseDuration = new Duration(new TimeSpan(0, 0, 1));
         private Duration hoverDuration = new Duration(new TimeSpan(0, 0, 2));
-        private Duration reverseDuration = new Duration(new TimeSpan(0, 0, 1));
+        private bool isHovering;
         private DoubleAnimation maskAnimation;
-        private bool isHovering = false;
 
         #endregion
 
         #region Properties
+
+        public static readonly DependencyProperty BackgroundColorProperty = DependencyProperty.Register(
+            "BackgroundColor", typeof (Brush), typeof (HoverButton), new PropertyMetadata(Brushes.Red));
+
+        public static readonly DependencyProperty HoverColorProperty = DependencyProperty.Register(
+            "HoverColor", typeof (Brush), typeof (HoverButton), new PropertyMetadata(Brushes.White));
+
+        public static readonly DependencyProperty TextColorProperty = DependencyProperty.Register(
+            "TextColor", typeof (Brush), typeof (HoverButton), new PropertyMetadata(Brushes.White));
+
+        public static readonly DependencyProperty TextProperty = DependencyProperty.Register(
+            "Text", typeof (string), typeof (HoverButton), new PropertyMetadata(""));
+
+        public static readonly DependencyProperty TextSizeProperty = DependencyProperty.Register(
+            "TextSize", typeof (int), typeof (HoverButton), new PropertyMetadata(36));
+
+        public static readonly DependencyProperty ImageProperty = DependencyProperty.Register(
+            "Image", typeof (string), typeof (HoverButton), new PropertyMetadata(""));
 
         public int HoverTime
         {
@@ -31,57 +48,50 @@ namespace Merbla.Kinecting.WPF.Controls
 
         public Brush BackgroundColor
         {
-            get { return (Brush)this.GetValue(BackgroundColorProperty); }
-            set { this.SetValue(BackgroundColorProperty, value); }
+            get { return (Brush) GetValue(BackgroundColorProperty); }
+            set { SetValue(BackgroundColorProperty, value); }
         }
-        public static readonly DependencyProperty BackgroundColorProperty = DependencyProperty.Register(
-            "BackgroundColor", typeof(Brush), typeof(HoverButton), new PropertyMetadata(Brushes.Red));
 
         public Brush HoverColor
         {
-            get { return (Brush)this.GetValue(HoverColorProperty); }
-            set { this.SetValue(HoverColorProperty, value); }
+            get { return (Brush) GetValue(HoverColorProperty); }
+            set { SetValue(HoverColorProperty, value); }
         }
-        public static readonly DependencyProperty HoverColorProperty = DependencyProperty.Register(
-            "HoverColor", typeof(Brush), typeof(HoverButton), new PropertyMetadata(Brushes.White));
 
         public Brush TextColor
         {
-            get { return (Brush)this.GetValue(TextColorProperty); }
-            set { this.SetValue(TextColorProperty, value); }
+            get { return (Brush) GetValue(TextColorProperty); }
+            set { SetValue(TextColorProperty, value); }
         }
-        public static readonly DependencyProperty TextColorProperty = DependencyProperty.Register(
-            "TextColor", typeof(Brush), typeof(HoverButton), new PropertyMetadata(Brushes.White));
 
         public string Text
         {
-            get { return (string)this.GetValue(TextProperty); }
-            set { this.SetValue(TextProperty, value); }
+            get { return (string) GetValue(TextProperty); }
+            set { SetValue(TextProperty, value); }
         }
-        public static readonly DependencyProperty TextProperty = DependencyProperty.Register(
-            "Text", typeof(string), typeof(HoverButton), new PropertyMetadata(""));
 
         public int TextSize
         {
-            get { return (int)this.GetValue(TextSizeProperty); }
-            set { this.SetValue(TextSizeProperty, value); }
+            get { return (int) GetValue(TextSizeProperty); }
+            set { SetValue(TextSizeProperty, value); }
         }
-        public static readonly DependencyProperty TextSizeProperty = DependencyProperty.Register(
-            "TextSize", typeof(int), typeof(HoverButton), new PropertyMetadata((int)36));
 
         public string Image
         {
-            get { return (string)this.GetValue(ImageProperty); }
-            set { this.SetValue(ImageProperty, value); }
+            get { return (string) GetValue(ImageProperty); }
+            set { SetValue(ImageProperty, value); }
         }
-        public static readonly DependencyProperty ImageProperty = DependencyProperty.Register(
-            "Image", typeof(string), typeof(HoverButton), new PropertyMetadata(""));
 
         #endregion
 
         #region Events
 
+        #region Delegates
+
         public delegate void ClickHandler(object sender, EventArgs e);
+
+        #endregion
+
         public event ClickHandler Click;
 
         #endregion
@@ -90,14 +100,14 @@ namespace Merbla.Kinecting.WPF.Controls
 
         private void StartHovering()
         {
-            double maxFillHeight = this.ActualHeight;
+            var maxFillHeight = ActualHeight;
 
             if (!isHovering)
             {
                 isHovering = true;
                 maskAnimation = new DoubleAnimation(Mask.ActualHeight, maxFillHeight, hoverDuration);
-                maskAnimation.Completed += new EventHandler(maskAnimation_Completed);
-                Mask.BeginAnimation(Canvas.HeightProperty, maskAnimation);
+                maskAnimation.Completed += maskAnimation_Completed;
+                Mask.BeginAnimation(HeightProperty, maskAnimation);
             }
         }
 
@@ -108,28 +118,28 @@ namespace Merbla.Kinecting.WPF.Controls
                 isHovering = false;
                 maskAnimation.Completed -= maskAnimation_Completed;
                 maskAnimation = new DoubleAnimation(Mask.ActualHeight, 0, reverseDuration);
-                Mask.BeginAnimation(Canvas.HeightProperty, maskAnimation);
+                Mask.BeginAnimation(HeightProperty, maskAnimation);
             }
         }
 
-        void maskAnimation_Completed(object sender, EventArgs e)
+        private void maskAnimation_Completed(object sender, EventArgs e)
         {
             isHovering = false;
             if (Click != null)
                 Click(this, e);
-            Mask.BeginAnimation(Canvas.HeightProperty, null);
+            Mask.BeginAnimation(HeightProperty, null);
         }
 
         public bool Check(FrameworkElement cursor)
         {
             if (IsCursorInButton(cursor))
             {
-                this.StartHovering();
+                StartHovering();
                 return true;
             }
             else
             {
-                this.StopHovering();
+                StopHovering();
                 return false;
             }
         }
@@ -139,16 +149,16 @@ namespace Merbla.Kinecting.WPF.Controls
             try
             {
                 //Cursor midpoint location
-                Point cursorTopLeft = cursor.PointToScreen(new Point());
-                double cursorCenterX = cursorTopLeft.X + (cursor.ActualWidth / 2);
-                double cursorCenterY = cursorTopLeft.Y + (cursor.ActualHeight / 2);
+                var cursorTopLeft = cursor.PointToScreen(new Point());
+                var cursorCenterX = cursorTopLeft.X + (cursor.ActualWidth/2);
+                var cursorCenterY = cursorTopLeft.Y + (cursor.ActualHeight/2);
 
                 //Button location
-                Point buttonTopLeft = this.PointToScreen(new Point());
-                double buttonLeft = buttonTopLeft.X;
-                double buttonRight = buttonLeft + this.ActualWidth;
-                double buttonTop = buttonTopLeft.Y;
-                double buttonBottom = buttonTop + this.ActualHeight;
+                var buttonTopLeft = PointToScreen(new Point());
+                var buttonLeft = buttonTopLeft.X;
+                var buttonRight = buttonLeft + ActualWidth;
+                var buttonTop = buttonTopLeft.Y;
+                var buttonBottom = buttonTop + ActualHeight;
 
                 if (cursorCenterX < buttonLeft || cursorCenterX > buttonRight)
                     return false;
@@ -169,7 +179,7 @@ namespace Merbla.Kinecting.WPF.Controls
         public HoverButton()
         {
             InitializeComponent();
-            this.DataContext = this;
+            DataContext = this;
         }
     }
 }

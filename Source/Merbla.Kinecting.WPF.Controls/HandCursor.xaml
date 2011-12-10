@@ -7,7 +7,7 @@
              d:DesignHeight="40" d:DesignWidth="40">
     <Ellipse Height="40" Width="40" Name="hand">
         <Ellipse.Fill>
-            <ImageBrush ImageSource="/KinectControls;component/Images/Hand.png" />
+            <ImageBrush ImageSource="Images/Hand.png" />
         </Ellipse.Fill>
     </Ellipse>
 </UserControl>
