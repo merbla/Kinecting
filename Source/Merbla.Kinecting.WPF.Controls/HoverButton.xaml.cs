@@ -179,7 +179,7 @@ namespace Merbla.Kinecting.WPF.Controls
         public HoverButton()
         {
             InitializeComponent();
-            DataContext = this;
+           DataContext = this;
         }
     }
 }

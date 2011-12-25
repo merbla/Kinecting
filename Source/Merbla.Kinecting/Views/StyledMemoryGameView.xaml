@@ -27,8 +27,7 @@
                                 </ObjectAnimationUsingKeyFrames>
                                 <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)"  >
                                     <EasingDoubleKeyFrame KeyTime="0:0:1" Value="0.005"/>
-                                </DoubleAnimationUsingKeyFrames>
-                                
+                                </DoubleAnimationUsingKeyFrames> 
                             </Storyboard>
                         </BeginStoryboard>
                     </DataTrigger.EnterActions>
@@ -44,54 +43,41 @@
             <WrapPanel Orientation="Horizontal" />
         </ItemsPanelTemplate>
     </UserControl.Resources>
-    <Canvas x:Name="canvas" Height="{Binding CanvasHeight}" Width="{Binding CanvasWidth}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-       
-
-        <ItemsControl ItemsSource="{Binding MemoryGame.Tiles}" ItemsPanel="{StaticResource ItemsPanelTemplate1}"   >
-
+    <Canvas x:Name="canvas" Height="{Binding CanvasHeight}" Width="{Binding CanvasWidth}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"> 
+        <ItemsControl ItemsSource="{Binding MemoryGame.Tiles}" ItemsPanel="{StaticResource ItemsPanelTemplate1}" Visibility="Visible"  > 
             <ItemsControl.ItemTemplate>
                 <DataTemplate >
                     <StackPanel Orientation="Horizontal">
-                        <Button Content="{Binding Value.DisplayText}" 
+                        <!--<Button Content="{Binding Value.DisplayText}" 
                                 cal:Message.Attach="[Event Click] = [Action ChooseTile($dataContext)]" 
                                 Style="{StaticResource MemoryContentStyle}"  >
-                        </Button>
-                        <!--<controls:ContentControl3D Content="{Binding Value.DisplayText}"  >
+                        </Button>-->
+                        <controls:HoverButton 
+                            BackgroundColor="Blue"   
+                            
+                            Text="{Binding Path= DataContext.Value.DisplayText,RelativeSource={RelativeSource AncestorType={x:Type StackPanel}}}"
+                            cal:Message.Attach="[Event Click] = [Action ChooseTile($dataContext)]" 
+                            HoverColor="White" 
+                            Height="50" Width="50" 
+                            >
                             <i:Interaction.Triggers>
-                                <Core:DataTrigger  Binding="{Binding  Value.Selected , Mode=OneWay}" Value="true">
-                                    <i:InvokeCommandAction Command="controls:ContentControl3D.RotateCommand"/>
-                                </Core:DataTrigger>
-                            </i:Interaction.Triggers>                            
-                        </controls:ContentControl3D>-->
-                    </StackPanel>
-
-
-
-
-                    <!--<controls:ContentControl3D Style="{StaticResource ThreeDContent}" >
-                            <i:Interaction.Triggers>
-                                <Core:DataTrigger  Binding="{Binding   Value.Selected , Mode=OneWay}" Value="true">
-                                    <i:InvokeCommandAction Command="controls:ContentControl3D.RotateCommand"/>
-                                </Core:DataTrigger>
-                                <Core:DataTrigger  Binding="{Binding  Value.Selected, Mode=TwoWay}" Value="false">
-                                    <i:InvokeCommandAction Command="controls:ContentControl3D.RotateCommand"/>
-                                </Core:DataTrigger>
+                                <i:EventTrigger EventName="Click">
+                                    <cal:ActionMessage MethodName="ChooseTile">
+                                        <cal:Parameter Value="{Binding Path= DataContext,RelativeSource={RelativeSource AncestorType={x:Type StackPanel}}}" />
+                                      
+                                        
+                                    </cal:ActionMessage>
+                                </i:EventTrigger>
                             </i:Interaction.Triggers>
-                            <controls:ContentControl3D.BackContentTemplate>
-                                <DataTemplate>
-                                    <Button Content="{Binding RelativeSource={RelativeSource AncestorType={x:Type controls:ContentControl3D}}, Path=DataContext.Value.HiddenText}" 
-                                            Tag="{Binding RelativeSource={RelativeSource AncestorType={x:Type controls:ContentControl3D}}, Path=DataContext}" 
-                                            cal:Message.Attach="[Event Click] = [Action Close($source )]"   
-                                            />
-                                </DataTemplate>
-                            </controls:ContentControl3D.BackContentTemplate>
-                            <Button Content="{Binding Value.Text}" cal:Message.Attach="[Event Click] = [Action Open($dataContext)]"  />
-                        </controls:ContentControl3D>-->
 
+
+                        </controls:HoverButton>
+                    </StackPanel> 
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
-        </ItemsControl>
-
+        </ItemsControl> 
         <controls:HandCursor   Canvas.Top="{Binding HandCursorY}" Canvas.Left="{Binding HandCursorX}" TrackedJoint="{Binding TrackedJoint}"  />
     </Canvas>
 </UserControl>
+
+<!--Text="{Binding Value.DisplayText}"--> 
